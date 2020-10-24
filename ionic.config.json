@@ -1,0 +1,7 @@
+{
+  "name": "PoolPal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
