@@ -1,0 +1,45 @@
+<ion-content [fullscreen]="true">
+    <div class="ion-padding">
+
+        <ion-list>
+            <ion-item>
+                <ion-img id="logo-img" part="image" [src]="image"></ion-img>
+            </ion-item>
+        </ion-list>
+        <div id="readings-header">
+            <h1>Readings</h1>
+            <p>Enter your water chemistry readings below:</p>
+        </div>
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="MM DD YY" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+        <ion-list id="readings-form" class="ion-justify-content-end">
+            <ion-item>
+                <ion-label>Free Chlorine</ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Total Chlorine</ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>pH</ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Alkalinity</ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Calcium Hardness</ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Cyanuric Acid</ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+            <ion-button>Save</ion-button>
+        </ion-list>
+    </div>
+</ion-content>
