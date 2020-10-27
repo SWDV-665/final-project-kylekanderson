@@ -7,6 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AccountPage {
 
-  constructor() {}
+  image: String;
+
+  constructor() {
+    let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (systemDark.matches) {
+      this.image = '/assets/logo_dark.png';
+    }
+    else {
+      this.image = '/assets/logo.png';
+    }
+  }
 
 }
