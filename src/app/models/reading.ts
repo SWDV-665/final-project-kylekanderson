@@ -1,10 +1,10 @@
 export class Reading {
-    user_id: number;
-    reading_date: date;
-    free_chlorine: number;
-    combined_chlorine: number;
-    ph: number;
-    alkalinity: number;
-    calcium: number;
-    cyanuric_acid: number;
+    user_id: Number;
+    reading_date: Date;
+    free_chlorine: Number;
+    combined_chlorine: Number;
+    ph: Number;
+    alkalinity: Number;
+    calcium: Number;
+    cyanuric_acid: Number;
 }

@@ -35,8 +35,9 @@ export class ReadingsPage implements OnInit {
   }
 
   submitForm() {
+    console.log(this.data);
     this.apiService.createItem(this.data).subscribe((response) => {
-      this.router.navigate(['historical-data']);
+      this.router.navigate(['/tabs/historicaldata']);
     });
   }
 }
