@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Reading } from '../models/reading';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from './../services/authentication.service';
 
 @Component({
   selector: 'app-readings',
@@ -16,7 +17,8 @@ export class ReadingsPage implements OnInit {
 
   constructor(
     public apiService: ApiService,
-    public router: Router
+    public router: Router,
+    private authService: AuthenticationService
   ) {
 
     this.data = new Reading();
@@ -40,4 +42,10 @@ export class ReadingsPage implements OnInit {
       this.router.navigate(['/tabs/historicaldata']);
     });
   }
+
+  async logout() {
+    await this.authService.logout();
+    this.router.navigateByUrl('/', { replaceUrl: true });
+  }
+
 }

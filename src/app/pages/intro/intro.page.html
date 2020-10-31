@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-slides pager="true">
+
+    <!-- Slide 1 -->
+    <ion-slide>
+      <ion-text color="light">
+        <img src="/assets/logo_transparent.png" style="width: 80%;">
+        <h1>Welcome to PoolPal!</h1>
+        <p>Thanks for checking out the app. A few quick things to know before you get started...</p>
+        <ion-button (click)="next()" fill="outline" color="light">Next</ion-button>
+      </ion-text>
+    </ion-slide>
+
+    <!-- Slide 2 -->
+    <ion-slide>
+      <ion-text color="light">
+        <img src="/assets/logo_transparent.png" style="width: 80%;">
+        <h1>Welcome to PoolPal!</h1>
+        <p>Getting started is as easy as:</p>
+        <ol style="text-align: left;">
+          <li>Register an account</li>
+          <li>Enter your pool water readings</li>
+          <li>Adjust your water using PoolPal's recommendations</li>
+          <li>Spend more time swimming and less time worrying about your water</li>
+        </ol>
+        <ion-button (click)="start()" fill="outline" color="light">Start</ion-button>
+      </ion-text>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>
