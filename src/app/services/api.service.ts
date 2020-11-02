@@ -2,8 +2,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Reading } from '../models/reading';
+import { User } from '../models/user';
+import { Chemicals } from '../models/user';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { flatMap, retry, catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +13,10 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  base_path = 'http://18.212.74.206:8080/api/readings';
+  readings_base_path = 'http://18.212.74.206:8080/api/readings';
+  user_base_path = 'http://18.212.74.206:8080/api/users';
 
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
 
   // Http Options
   httpOptions = {
@@ -44,9 +47,9 @@ export class ApiService {
 
 
   // Create a new item
-  createItem(item): Observable<Reading> {
+  createReading(item): Observable<Reading> {
     return this.http
-      .post<Reading>(this.base_path, JSON.stringify(item), this.httpOptions)
+      .post<Reading>(this.readings_base_path, JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -54,9 +57,9 @@ export class ApiService {
   }
 
   // Get single reading data by ID
-  getItem(id): Observable<Reading> {
+  getReading(id): Observable<Reading> {
     return this.http
-      .get<Reading>(this.base_path + '/' + id)
+      .get<Reading>(this.readings_base_path + '/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -64,19 +67,21 @@ export class ApiService {
   }
 
   // Get readings data
-  getList(): Observable<Reading> {
-    return this.http
-      .get<Reading>(this.base_path)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
+  getReadingList(): Observable<object[]> {
+    return this.http.get(this.readings_base_path).
+      pipe(
+        map((data: Reading[]) => {
+          return data;
+        }), catchError(error => {
+          return throwError('Something went wrong!');
+        })
       )
   }
 
   // Update item by id
-  updateItem(id, item): Observable<Reading> {
+  updateReading(id, item): Observable<Reading> {
     return this.http
-      .put<Reading>(this.base_path + '/' + id, JSON.stringify(item), this.httpOptions)
+      .put<Reading>(this.readings_base_path + '/' + id, JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -84,13 +89,61 @@ export class ApiService {
   }
 
   // Delete item by id
-  deleteItem(id) {
+  deleteReading(id) {
     return this.http
-      .delete<Reading>(this.base_path + '/' + id, this.httpOptions)
+      .delete<Reading>(this.readings_base_path + '/' + id, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
+  // Create a new item
+  createUser(item): Observable<User> {
+    return this.http
+      .post<User>(this.user_base_path, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Get single reading data by ID
+  getUser(id) {
+    this.http.get(this.user_base_path + '/' + id).subscribe((response) => {
+      console.log(response);
+      return response;
+  });
+}
+
+  getUserList(): Observable<object[]> {
+    return this.http.get(this.user_base_path).
+      pipe(
+        map((data: User[]) => {
+          return data;
+        }), catchError(error => {
+          return throwError('Something went wrong!');
+        })
+      )
+  }
+
+  // Update item by id
+  updateUser(id, item): Observable<User> {
+    return this.http
+      .put<User>(this.user_base_path + '/' + id, JSON.stringify(item), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Delete item by id
+  deleteUser(id) {
+    return this.http
+      .delete<User>(this.user_base_path + '/' + id, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
 }

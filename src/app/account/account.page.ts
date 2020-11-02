@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { User, Chemicals } from '../models/user';
+
+
 
 @Component({
   selector: 'app-account',
@@ -8,8 +13,14 @@ import { Component } from '@angular/core';
 export class AccountPage {
 
   image: String;
+  user: User[];
+  chemicals: Chemicals[];
 
-  constructor() {
+  constructor(
+    public http: HttpClient,
+    public apiService: ApiService,
+  ) {
+
     let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
 
     if (systemDark.matches) {
@@ -18,6 +29,20 @@ export class AccountPage {
     else {
       this.image = '/assets/logo.png';
     }
+
+  }
+  ngOnInit() {
+    this.getUserList();
   }
 
+  getUserList() {
+    this.apiService
+      .getUserList()
+      .subscribe((data: any) => {
+        console.log(data);
+        this.user = data;
+        this.chemicals = data[0].chemicals;
+        console.log(this.chemicals);
+      })
+  }
 }

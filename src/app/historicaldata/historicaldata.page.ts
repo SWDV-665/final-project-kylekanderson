@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { Reading } from '../models/reading';
+import { ApiService } from '../services/api.service';
+
 
 @Component({
   selector: 'app-historicaldata',
@@ -15,7 +18,11 @@ export class HistoricalDataPage implements AfterViewInit {
   doughnutChart: any;
   lineChart: any;
 
-  constructor() { }
+  readings: Reading[];
+
+  constructor(
+    public apiService: ApiService,
+  ) { }
 
   ngAfterViewInit() {
     this.barChartMethod();
@@ -120,5 +127,17 @@ export class HistoricalDataPage implements AfterViewInit {
         ]
       }
     });
+  }
+  ngOnInit() {
+    this.getReadingList();
+  }
+
+  getReadingList() {
+    this.apiService
+      .getReadingList()
+      .subscribe((data: any) => {
+        console.log(data);
+        this.readings = data;
+      })
   }
 }
