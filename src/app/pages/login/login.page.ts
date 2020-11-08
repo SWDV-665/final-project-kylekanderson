@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.credentials = this.fb.group({
-      email: ['eve.holt@reqres.in', [Validators.required, Validators.email]],
+      email: ['test@test.com', [Validators.required, Validators.email]],
       password: ['cityslicka', [Validators.required, Validators.minLength(6)]],
     });
   }
