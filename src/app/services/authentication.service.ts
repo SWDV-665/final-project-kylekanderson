@@ -60,8 +60,8 @@ export class AuthenticationService {
     }
   }
 
-  login(credentials: { email, password }) {
-    let response = this.http.post(this.user_base_path + '/login', credentials)
+  login(credentials: { email, password }): Observable<any> {
+    return this.http.post(this.user_base_path + '/login', credentials)
   }
 
   logout(): Promise<void> {

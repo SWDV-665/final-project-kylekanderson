@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.credentials = this.fb.group({
       email: ['test@test.com', [Validators.required, Validators.email]],
-      password: ['cityslicka', [Validators.required, Validators.minLength(6)]],
+      password: ['password', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -33,18 +33,24 @@ export class LoginPage implements OnInit {
 
     this.authService.login(this.credentials.value).subscribe(
       async (res) => {
-        await loading.dismiss();
-        this.router.navigateByUrl('/tabs', { replaceUrl: true });
-      },
-      async (res) => {
-        await loading.dismiss();
-        const alert = await this.alertController.create({
-          header: 'Login failed',
-          message: res.error.error,
-          buttons: ['OK'],
-        });
-
-        await alert.present();
+        console.log(res);
+        if (res._id) {
+          console.log('authenticated');
+          await loading.dismiss();
+          console.log('dismissed')
+          this.authService.isAuthenticated.next(true);
+          this.router.navigateByUrl('/tabs', { replaceUrl: true });
+          console.log('navigated');
+        }
+        else {
+          await loading.dismiss();
+          const alert = await this.alertController.create({
+            header: 'Login failed',
+            message: res,
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }
       }
     );
   }
