@@ -35,12 +35,10 @@ export class LoginPage implements OnInit {
       async (res) => {
         console.log(res);
         if (res._id) {
-          console.log('authenticated');
           await loading.dismiss();
-          console.log('dismissed')
+          this.authService.token = res._id;
           this.authService.isAuthenticated.next(true);
           this.router.navigateByUrl('/tabs', { replaceUrl: true });
-          console.log('navigated');
         }
         else {
           await loading.dismiss();

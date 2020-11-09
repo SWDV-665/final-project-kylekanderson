@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { User, Chemicals } from '../models/user';
-
+import { AuthenticationService } from '../services/authentication.service';
 
 
 @Component({
@@ -13,13 +13,14 @@ import { User, Chemicals } from '../models/user';
 export class AccountPage {
 
   image: String;
-  user: User[];
-  chemicals: Chemicals[];
+  user: User;
 
   constructor(
+    private authService: AuthenticationService,
     public http: HttpClient,
     public apiService: ApiService,
   ) {
+    this.getUserList();
 
     let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -32,17 +33,15 @@ export class AccountPage {
 
   }
   ngOnInit() {
-    this.getUserList();
   }
 
   getUserList() {
+    console.log(this.authService.token);
     this.apiService
-      .getUserList()
+      .getUser(this.authService.token)
       .subscribe((data: any) => {
-        console.log(data);
         this.user = data;
-        this.chemicals = data[0].chemicals;
-        console.log(this.chemicals);
+        console.log(this.user);
       })
   }
 }

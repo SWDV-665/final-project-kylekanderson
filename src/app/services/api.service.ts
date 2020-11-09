@@ -110,10 +110,12 @@ export class ApiService {
 
   // Get single reading data by ID
   getUser(id) {
-    this.http.get(this.user_base_path + '/' + id).subscribe((response) => {
-      console.log(response);
-      return response;
-  });
+    return this.http
+      .get<User>(this.user_base_path + '/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
 }
 
   getUserList(): Observable<object[]> {
