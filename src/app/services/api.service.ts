@@ -111,8 +111,9 @@ export class ApiService {
   // Get single reading data by ID
   getUser(id) {
     return this.http
-      .get<User>(this.user_base_path + '/' + id)
+      .get(this.user_base_path + '/' + id)
       .pipe(
+        map((response:Response)=>response.json()),
         retry(2),
         catchError(this.handleError)
       )

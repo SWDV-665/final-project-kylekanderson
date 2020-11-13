@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { User, Chemicals } from '../models/user';
+import { User } from '../models/user';
 import { AuthenticationService } from '../services/authentication.service';
+import { Observable, throwError } from 'rxjs';
+import { flatMap, retry, catchError, map } from 'rxjs/operators';
 
 
 @Component({
@@ -20,7 +22,12 @@ export class AccountPage {
     public http: HttpClient,
     public apiService: ApiService,
   ) {
-    this.getUserList();
+
+    this.http.get(this.apiService.user_base_path + '/' + this.authService.token).subscribe((response: any) => {
+      this.user = response;
+      console.log(response);
+      console.log(this.user);
+    });
 
     let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
 

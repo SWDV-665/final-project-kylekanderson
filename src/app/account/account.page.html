@@ -9,19 +9,21 @@
         <div id="account-header">
             <h1>My Account</h1>
             <p>Update your account-specific details below:</p>
+            <p>{{ user.name }}</p>
+
         </div>
         <ion-list id="account-form" class="ion-justify-content-end">
             <ion-item>
                 <ion-label>Name</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.name }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Email Address</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.email }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>User Name</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.user_name }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Password</ion-label>
@@ -33,15 +35,15 @@
             </ion-item>
             <ion-item>
                 <ion-label>Pool Volume</ion-label>
-                <ion-input type="number"></ion-input>
+                <ion-input value="{{ user.pool_gallons }}" type="number"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Pool Type</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.pool_type }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Chlorine Source</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.chemicals.chlorine }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>pH Up</ion-label>
