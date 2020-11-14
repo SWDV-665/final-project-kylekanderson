@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Reading } from '../models/reading';
 import { ApiService } from '../services/api.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -10,126 +11,176 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['historicaldata.page.scss'],
 })
 export class HistoricalDataPage implements AfterViewInit {
-  @ViewChild('barCanvas') private barCanvas: ElementRef;
-  @ViewChild('doughnutCanvas') private doughnutCanvas: ElementRef;
-  @ViewChild('lineCanvas') private lineCanvas: ElementRef;
+  @ViewChild('chlorineCanvas') private chlorineCanvas: ElementRef;
+  @ViewChild('phCanvas') private phCanvas: ElementRef;
+  @ViewChild('alkalinityCanvas') private alkalinityCanvas: ElementRef;
+  @ViewChild('calciumCanvas') private calciumCanvas: ElementRef;
+  @ViewChild('cyaCanvas') private cyaCanvas: ElementRef;
 
   barChart: any;
   doughnutChart: any;
   lineChart: any;
+  labels: any;
+  ph: any;
+  free_chlorine: any;
+  combined_chlorine: any;
+  alkalinity: any;
+  calcium: any;
+  cyanuric_acid: any;
 
   readings: Reading[];
+  image: String;
 
   constructor(
     public apiService: ApiService,
-  ) { }
+  ) {
+
+    let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (systemDark.matches) {
+      this.image = '/assets/logo_dark.png';
+    }
+    else {
+      this.image = '/assets/logo.png';
+    }
+
+
+  }
+
+  ionViewDidEnter() {
+    this.getReadingList();
+  }
 
   ngAfterViewInit() {
-    this.barChartMethod();
-    this.doughnutChartMethod();
-    this.lineChartMethod();
+
   }
 
-  barChartMethod() {
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: ['BJP', 'INC', 'AAP', 'CPI', 'CPI-M', 'NCP'],
-        datasets: [{
-          label: '# of Votes',
-          data: [200, 50, 30, 15, 20, 34],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-  }
-
-  doughnutChartMethod() {
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: 'doughnut',
-      data: {
-        labels: ['BJP', 'Congress', 'AAP', 'CPM', 'SP'],
-        datasets: [{
-          label: '# of Votes',
-          data: [50, 29, 15, 10, 7],
-          backgroundColor: [
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)'
-          ],
-          hoverBackgroundColor: [
-            '#FFCE56',
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            '#FF6384'
-          ]
-        }]
-      }
-    });
-  }
-
-  lineChartMethod() {
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+  buildChlorineChart() {
+    this.lineChart = new Chart(this.chlorineCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
+        labels: this.labels,
         datasets: [
           {
-            label: 'Sell per week',
-            fill: false,
-            lineTension: 0.1,
+            label: 'Free Chlorine',
             backgroundColor: 'rgba(75,192,192,0.4)',
             borderColor: 'rgba(75,192,192,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
             pointBorderColor: 'rgba(75,192,192,1)',
             pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
             pointHoverBackgroundColor: 'rgba(75,192,192,1)',
             pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40, 10, 5, 50, 10, 15],
-            spanGaps: false,
+            data: this.free_chlorine,
+          },
+          {
+            label: 'Combined Chlorine',
+            backgroundColor: 'rgba(191,75,75,0.4)',
+            borderColor: 'rgba(191,75,75,1)',
+            pointBorderColor: 'rgba(191,75,75,1)',
+            pointBackgroundColor: '#fff',
+            pointHoverBackgroundColor: 'rgba(191,75,75,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            data: this.combined_chlorine,
           }
         ]
       }
     });
   }
+
+  buildPhChart() {
+    this.lineChart = new Chart(this.phCanvas.nativeElement, {
+      type: 'line',
+      data: {
+        labels: this.labels,
+        datasets: [
+          {
+            label: 'pH',
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            data: this.ph,
+          }
+        ]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'month'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  buildAlkalinityChart() {
+    this.lineChart = new Chart(this.alkalinityCanvas.nativeElement, {
+      type: 'line',
+      data: {
+        labels: this.labels,
+        datasets: [
+          {
+            label: 'Alkalinity',
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            data: this.alkalinity,
+          }
+        ]
+      }
+    });
+  }
+
+  buildCalciumChart() {
+    this.lineChart = new Chart(this.calciumCanvas.nativeElement, {
+      type: 'line',
+      data: {
+        labels: this.labels,
+        datasets: [
+          {
+            label: 'Calcium',
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            data: this.calcium,
+          }
+        ]
+      }
+    });
+  }
+
+  buildCyaChart() {
+    this.lineChart = new Chart(this.cyaCanvas.nativeElement, {
+      type: 'line',
+      data: {
+        labels: this.labels,
+        datasets: [
+          {
+            label: 'CYA',
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            data: this.cyanuric_acid,
+          }
+        ]
+      }
+    });
+  }
+
   ngOnInit() {
-    this.getReadingList();
   }
 
   getReadingList() {
@@ -138,6 +189,32 @@ export class HistoricalDataPage implements AfterViewInit {
       .subscribe((data: any) => {
         console.log(data);
         this.readings = data;
-      })
+        this.labels = this.readings.map(function (e) {
+          return moment(e.reading_date).format('MM-DD-YYYY');
+        });
+        this.ph = this.readings.map(function (e) {
+          return e.ph;
+        });
+        this.free_chlorine = this.readings.map(function (e) {
+          return e.free_chlorine;
+        });
+        this.combined_chlorine = this.readings.map(function (e) {
+          return e.combined_chlorine;
+        });
+        this.alkalinity = this.readings.map(function (e) {
+          return e.alkalinity;
+        });
+        this.calcium = this.readings.map(function (e) {
+          return e.calcium;
+        });
+        this.cyanuric_acid = this.readings.map(function (e) {
+          return e.cyanuric_acid;
+        });
+        this.buildPhChart();
+        this.buildAlkalinityChart();
+        this.buildChlorineChart();
+        this.buildCalciumChart();
+        this.buildCyaChart();
+      });
   }
 }
