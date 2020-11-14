@@ -1,6 +1,5 @@
 <ion-content [fullscreen]="true">
     <div class="ion-padding">
-
         <ion-list>
             <ion-item>
                 <ion-img id="logo-img" part="image" [src]="image"></ion-img>
@@ -11,10 +10,6 @@
             <p>Enter your water chemistry readings below:</p>
         </div>
         <ion-list id="readings-form" class="ion-justify-content-end">
-            <ion-item>
-                <ion-label>User ID</ion-label>
-                <ion-input [(ngModel)]="data.user_id" type="number"></ion-input>
-            </ion-item>
             <ion-item>
                 <ion-label>Date</ion-label>
                 <ion-datetime [(ngModel)]="data.reading_date" displayFormat="MM DD YY" placeholder="Select Date"></ion-datetime>
