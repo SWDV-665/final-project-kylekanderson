@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { User } from '../models/user';
+import { Chemicals, User } from '../models/user';
 import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { flatMap, retry, catchError, map } from 'rxjs/operators';
 
@@ -14,6 +15,7 @@ import { flatMap, retry, catchError, map } from 'rxjs/operators';
 })
 export class AccountPage {
 
+  data: User;
   image: String;
   user: User;
 
@@ -21,13 +23,8 @@ export class AccountPage {
     private authService: AuthenticationService,
     public http: HttpClient,
     public apiService: ApiService,
+    public router: Router
   ) {
-
-    this.http.get(this.apiService.user_base_path + '/' + this.authService.token).subscribe((response: any) => {
-      this.user = response;
-      console.log(response);
-      console.log(this.user);
-    });
 
     let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -37,18 +34,40 @@ export class AccountPage {
     else {
       this.image = '/assets/logo.png';
     }
-
-  }
-  ngOnInit() {
   }
 
-  getUserList() {
-    console.log(this.authService.token);
-    this.apiService
-      .getUser(this.authService.token)
-      .subscribe((data: any) => {
-        this.user = data;
-        console.log(this.user);
-      })
+  ionViewDidEnter() {
+    this.getUser();
   }
+
+
+  getUser() {
+    this.http.get(this.apiService.user_base_path + '/' + this.authService.token).subscribe((response: any) => {
+      this.user = response;
+      console.log(response);
+      console.log(this.user);
+    })
+  }
+
+  submitForm(form) {
+    console.log(form);
+    let chemicals = new Chemicals(form.value.chlorine, form.value.ph_up, form.value.ph_down, form.value.alkalinity_up, form.value.alkalinity_down, form.value.calcium_up, form.value.calcium_down);
+    let user = new User(form.value.user_name, form.value.email, 'password', form.value.name, form.value.pool_gallons, form.value.pool_type, chemicals);
+    this.apiService.updateUser(this.authService.token, user).subscribe((response) => {
+      this.router.navigate(['/tabs/readings']);
+    });
+  }
+
+
+  // getUserList() {
+  //   console.log(this.authService.token);
+  //   this.apiService
+  //     .getUser(this.authService.token)
+  //     .subscribe((data: any) => {
+  //       this.user = data;
+  //       console.log(this.user);
+  //     })
+  // }
+
 }
+
