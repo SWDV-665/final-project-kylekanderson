@@ -1,7 +1,8 @@
 export class User {
+    _id: string;
     constructor(
-        public _id: String,
         public user_name: String,
+        public email: String,
         public password: String,
         public name: String,
         public pool_gallons: Number,
@@ -11,8 +12,8 @@ export class User {
 }
 
 export class Chemicals {
+    _id: string;
     constructor(
-        public _id: String,
         public chlorine: String,
         public ph_up: String,
         public ph_down: String,
