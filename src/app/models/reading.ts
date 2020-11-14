@@ -1,5 +1,5 @@
 export class Reading {
-    user_id: Number;
+    user_id: String;
     reading_date: Date;
     free_chlorine: Number;
     combined_chlorine: Number;
