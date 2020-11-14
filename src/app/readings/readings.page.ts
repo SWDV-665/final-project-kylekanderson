@@ -40,6 +40,7 @@ export class ReadingsPage implements OnInit {
   submitForm() {
     console.log(this.data);
     this.apiService.createReading(this.data).subscribe((response) => {
+      this.data = new Reading();
       this.router.navigate(['/tabs/historicaldata']);
     });
   }
