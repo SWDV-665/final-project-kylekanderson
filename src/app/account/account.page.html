@@ -43,31 +43,31 @@
             </ion-item>
             <ion-item>
                 <ion-label>Chlorine Source</ion-label>
-                <ion-input value="{{ user.chemicals.chlorine }}" type="string"></ion-input>
+                <ion-input value="{{ user.chemicals[0].chlorine }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>pH Up</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.chemicals[0].ph_up }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>ph Down</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.chemicals[0].ph_down }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Alkalinity Up</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.chemicals[0].alkalinity_up }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Alkalinity Down</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.chemicals[0].alkalinity_down }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Calcium Up</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.chemicals[0].calcium_up }}" type="string"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Calcium Down</ion-label>
-                <ion-input type="string"></ion-input>
+                <ion-input value="{{ user.chemicals[0].calcium_down }}" type="string"></ion-input>
             </ion-item>
             <ion-button>Save</ion-button>
         </ion-list>
