@@ -22,6 +22,7 @@ export class ReadingsPage implements OnInit {
   ) {
 
     this.data = new Reading();
+    this.data.user_id = this.authService.token;
 
     let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
 
