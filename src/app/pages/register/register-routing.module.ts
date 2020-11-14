@@ -7,6 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: RegisterPage
+  },
+  {
+    path: 'home',
+    redirectTo: '/tabs/readings',
+    pathMatch: 'full'
   }
 ];
 
