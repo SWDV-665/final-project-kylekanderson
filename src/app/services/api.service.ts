@@ -67,8 +67,8 @@ export class ApiService {
   }
 
   // Get readings data
-  getReadingList(): Observable<object[]> {
-    return this.http.get(this.readings_base_path).
+  getReadings(userId): Observable<object[]> {
+    return this.http.get(this.readings_base_path + '/' + userId).
       pipe(
         map((data: Reading[]) => {
           return data;

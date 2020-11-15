@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Reading } from '../models/reading';
 import { ApiService } from '../services/api.service';
+import { AuthenticationService } from '../services/authentication.service';
 import * as moment from 'moment';
 
 
@@ -33,6 +34,7 @@ export class HistoricalDataPage implements AfterViewInit {
 
   constructor(
     public apiService: ApiService,
+    private authService: AuthenticationService,
   ) {
 
     let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -185,7 +187,7 @@ export class HistoricalDataPage implements AfterViewInit {
 
   getReadingList() {
     this.apiService
-      .getReadingList()
+      .getReadings(this.authService.token)
       .subscribe((data: any) => {
         console.log(data);
         this.readings = data;
