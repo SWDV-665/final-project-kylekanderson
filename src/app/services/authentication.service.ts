@@ -7,7 +7,7 @@ import { Plugins } from '@capacitor/core';
 import { Chemicals, User } from '../models/user';
 const { Storage } = Plugins;
 
-const TOKEN_KEY = 'my-token';
+export const TOKEN_KEY = 'my-token';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +55,9 @@ export class AuthenticationService {
       console.log('set token: ', token.value);
       this.token = token.value;
       this.isAuthenticated.next(true);
+      return token.value;
     } else {
+      console.log('no token found');
       this.isAuthenticated.next(false);
     }
   }
@@ -66,7 +68,7 @@ export class AuthenticationService {
 
   logout(): Promise<void> {
     this.isAuthenticated.next(false);
-    return Storage.remove({ key: TOKEN_KEY });
+    return;
   }
 
   register(userData) {
