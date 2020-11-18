@@ -72,6 +72,8 @@ export class HistoricalDataPage implements AfterViewInit {
             pointHoverBackgroundColor: 'rgba(75,192,192,1)',
             pointHoverBorderColor: 'rgba(220,220,220,1)',
             data: this.free_chlorine,
+            pointRadius: 5,
+            pointHoverRadius: 10
           },
           {
             label: 'Combined Chlorine',
@@ -82,6 +84,8 @@ export class HistoricalDataPage implements AfterViewInit {
             pointHoverBackgroundColor: 'rgba(191,75,75,1)',
             pointHoverBorderColor: 'rgba(220,220,220,1)',
             data: this.combined_chlorine,
+            pointRadius: 5,
+            pointHoverRadius: 10
           }
         ]
       }
@@ -103,6 +107,8 @@ export class HistoricalDataPage implements AfterViewInit {
             pointHoverBackgroundColor: 'rgba(75,192,192,1)',
             pointHoverBorderColor: 'rgba(220,220,220,1)',
             data: this.ph,
+            pointRadius: 5,
+            pointHoverRadius: 10
           }
         ]
       },
@@ -134,6 +140,8 @@ export class HistoricalDataPage implements AfterViewInit {
             pointHoverBackgroundColor: 'rgba(75,192,192,1)',
             pointHoverBorderColor: 'rgba(220,220,220,1)',
             data: this.alkalinity,
+            pointRadius: 5,
+            pointHoverRadius: 10
           }
         ]
       }
@@ -155,6 +163,8 @@ export class HistoricalDataPage implements AfterViewInit {
             pointHoverBackgroundColor: 'rgba(75,192,192,1)',
             pointHoverBorderColor: 'rgba(220,220,220,1)',
             data: this.calcium,
+            pointRadius: 5,
+            pointHoverRadius: 10
           }
         ]
       }
@@ -176,6 +186,8 @@ export class HistoricalDataPage implements AfterViewInit {
             pointHoverBackgroundColor: 'rgba(75,192,192,1)',
             pointHoverBorderColor: 'rgba(220,220,220,1)',
             data: this.cyanuric_acid,
+            pointRadius: 5,
+            pointHoverRadius: 10
           }
         ]
       }
