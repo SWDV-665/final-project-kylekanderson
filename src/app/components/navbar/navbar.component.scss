@@ -1,0 +1,39 @@
+@media (max-width: 1024px) {
+    #desktop-nav {
+        display: none;
+    }
+}
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+
+    li {
+        float: left;
+
+        a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+
+            &.active {
+                background-color: var(--ion-color-primary);
+            }
+
+            &:hover {
+                background-color: #111;
+            }
+        }
+    }
+}
