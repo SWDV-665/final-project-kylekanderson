@@ -20,8 +20,9 @@ export class NavbarComponent implements OnInit {
 
     // Loop through the buttons and add the active class to the current/clicked button
     for (var i = 0; i < btns.length; i++) {
-      console.log(btns[i].pathname);
-      if (btns[i].pathname === pagePath) {
+      console.log(typeof btns[i]);
+      console.log(btns[i].getAttribute('href'));
+      if (btns[i].getAttribute('href') === pagePath) {
         btns[i].className += ' active';
       }
     }
