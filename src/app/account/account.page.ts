@@ -6,6 +6,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { flatMap, retry, catchError, map } from 'rxjs/operators';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -37,6 +38,7 @@ export class AccountPage {
   }
 
   ionViewDidEnter() {
+    $(':input').attr('data-lpignore', true);
     this.getUser();
   }
 

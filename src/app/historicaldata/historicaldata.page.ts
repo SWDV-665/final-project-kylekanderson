@@ -204,7 +204,7 @@ export class HistoricalDataPage implements AfterViewInit {
         console.log(data);
         this.readings = data;
         this.labels = this.readings.map(function (e) {
-          return moment(e.reading_date).format('MM-DD-YYYY');
+          return moment.utc(e.reading_date).format('MM-DD-YYYY');
         });
         this.ph = this.readings.map(function (e) {
           return e.ph;
