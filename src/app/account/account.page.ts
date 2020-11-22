@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Chemicals, User } from '../models/user';
+import { Chemical } from '../models/chemical';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
@@ -16,6 +17,7 @@ import * as $ from 'jquery';
 })
 export class AccountPage {
 
+  chemicalList: Chemical;
   data: User;
   image: String;
   user: User;
@@ -40,6 +42,7 @@ export class AccountPage {
   ionViewDidEnter() {
     $(':input').attr('data-lpignore', true);
     this.getUser();
+    this.getChemicals();
   }
 
 
@@ -51,10 +54,19 @@ export class AccountPage {
     })
   }
 
+  getChemicals() {
+    this.http.get(this.apiService.chemicals_base_path).subscribe((response: any) => {
+      this.chemicalList = response;
+      console.log(this.chemicalList);
+    })
+  }
+
   submitForm(form) {
     console.log(form);
     let chemicals = new Chemicals(form.value.chlorine, form.value.ph_up, form.value.ph_down, form.value.alkalinity_up, form.value.alkalinity_down, form.value.calcium_up, form.value.calcium_down);
     let user = new User(form.value.user_name, form.value.email, 'password', form.value.name, form.value.pool_gallons, form.value.pool_type, chemicals);
+    console.log(chemicals);
+    console.log(user);
     this.apiService.updateUser(this.authService.token, user).subscribe((response) => {
       this.router.navigate(['/tabs/readings']);
     });

@@ -1,94 +1,110 @@
-<ion-content  color="primary">
-  <form  #form="ngForm" (ngSubmit)="register(form)">
-    <ion-grid>
-      <ion-row color="primary" justify-content-center>
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-            <h1>Register</h1>
-          </div>
-          <div padding>
-            <h2>Account Information:</h2>
-            <ion-item>
-              <ion-input  name="name" type="text" placeholder="Name" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input  name="user_name" type="text" placeholder="Username" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
-            </ion-item>
-            <h2>Pool Information:</h2>
-            <ion-item>
-              <ion-label>Pool Type</ion-label>
-              <ion-select name="pool_type" ngModel placeholder="Select One">
-                <ion-select-option value="Fiberglass">Fiberglass</ion-select-option>
-                <ion-select-option value="Concrete">Concrete</ion-select-option>
-                <ion-select-option value="Vinyl">Vinyl</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-input  name="pool_gallons" type="text" placeholder="Pool Size (gallons)" ngModel></ion-input>
-            </ion-item>
-          </div>
-          <div padding>
-            <h2>Chemicals Used:</h2>
-            <ion-item>
-              <ion-label>Chlorine</ion-label>
-              <ion-select name="chlorine" ngModel placeholder="Select One">
-                <ion-select-option value="Tri-Chlor">Tri-Chlor</ion-select-option>
-                <ion-select-option value="Di-Chlor">Di-Chlor</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>pH Up</ion-label>
-              <ion-select name="ph_up" ngModel placeholder="Select One">
-                <ion-select-option value="Soda Ash">Soda Ash</ion-select-option>
-                <ion-select-option value="Baking Soda">Baking Soda</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>pH Down</ion-label>
-              <ion-select name="ph_down" ngModel placeholder="Select One">
-                <ion-select-option value="Dry Acid">Dry Acid</ion-select-option>
-                <ion-select-option value="Muriatic Acid">Muriatic Acid</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Alkalinity Up</ion-label>
-              <ion-select name="alkalinity_up" ngModel placeholder="Select One">
-                <ion-select-option value="Baking Soda">Baking Soda</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Alkalinity Down</ion-label>
-              <ion-select name="alkalinity_down" ngModel placeholder="Select One">
-                <ion-select-option value="Muriatic Acid">Muriatic Acid</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Calcium Up</ion-label>
-              <ion-select name="calcium_up" ngModel placeholder="Select One">
-                <ion-select-option value="Calcium Chloride">Calcium Chloride</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Calcium Down</ion-label>
-              <ion-select name="calcium_down" ngModel placeholder="Select One">
-                <ion-select-option value="Muriatic Acid">Muriatic Acid</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </div>
-          <div padding>
-            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
+<ion-content color="primary">
+    <form #form="ngForm" (ngSubmit)="register(form)">
+        <ion-grid>
+            <ion-row color="primary" justify-content-center>
+                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                    <div text-center>
+                        <h1>Register</h1>
+                    </div>
+                    <div padding>
+                        <h2>Account Information:</h2>
+                        <ion-item>
+                            <ion-input name="name" type="text" placeholder="Name" ngModel required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input name="user_name" type="text" placeholder="Username" ngModel required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
+                        </ion-item>
+                        <h2>Pool Information:</h2>
+                        <ion-item>
+                            <ion-label>Pool Type</ion-label>
+                            <ion-select name="pool_type" ngModel placeholder="Select One">
+                                <ion-select-option value="Fiberglass">Fiberglass</ion-select-option>
+                                <ion-select-option value="Concrete">Concrete</ion-select-option>
+                                <ion-select-option value="Vinyl">Vinyl</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input name="pool_gallons" type="text" placeholder="Pool Size (gallons)" ngModel></ion-input>
+                        </ion-item>
+                    </div>
+                    <div padding>
+                        <h2>Chemicals Used:</h2>
+                        <ion-item>
+                            <ion-label>Chlorine</ion-label>
+                            <ion-select name="chlorine" ngModel placeholder="Select One">
+                                <ng-container *ngFor="let chemical of chemicalList">
+                                    <ion-select-option *ngIf="chemical.effects.includes('chlorine_up')">{{chemical.name}}
+                                    </ion-select-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>pH Up</ion-label>
+                            <ion-select name="ph_up" ngModel placeholder="Select One">
+                                <ng-container *ngFor="let chemical of chemicalList">
+                                    <ion-select-option *ngIf="chemical.effects.includes('ph_up')">{{chemical.name}}</ion-select-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>pH Down</ion-label>
+                            <ion-select name="ph_down" ngModel placeholder="Select One">
+                                <ng-container *ngFor="let chemical of chemicalList">
+                                    <ion-select-option *ngIf="chemical.effects.includes('ph_down')">{{chemical.name}}</ion-select-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Alkalinity Up</ion-label>
+                            <ion-select name="alkalinity_up" ngModel placeholder="Select One">
+                                <ng-container *ngFor="let chemical of chemicalList">
+                                    <ion-select-option *ngIf="chemical.effects.includes('alkalinity_up')">{{chemical.name}}
+                                    </ion-select-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Alkalinity Down</ion-label>
+                            <ion-select name="alkalinity_down" ngModel placeholder="Select One">
+                                <ng-container *ngFor="let chemical of chemicalList">
+                                    <ion-select-option *ngIf="chemical.effects.includes('alkalinity_down')">{{chemical.name}}
+                                    </ion-select-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Calcium Up</ion-label>
+                            <ion-select name="calcium_up" ngModel placeholder="Select One">
+                                <ng-container *ngFor="let chemical of chemicalList">
+                                    <ion-select-option *ngIf="chemical.effects.includes('calcium_up')">{{chemical.name}}
+                                    </ion-select-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Calcium Down</ion-label>
+                            <ion-select name="calcium_down" ngModel placeholder="Select One">
+                                <ng-container *ngFor="let chemical of chemicalList">
+                                    <ion-select-option *ngIf="chemical.effects.includes('calcium_down')">{{chemical.name}}
+                                    </ion-select-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                    <div padding>
+                        <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
 </ion-content>

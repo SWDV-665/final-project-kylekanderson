@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthenticationService } from '../../services/authentication.service';
 import { ApiService } from '../../services/api.service';
+import { Chemicals, User } from '../../models/user';
 import { Chemical } from '../../models/chemical';
 
 @Component({
@@ -12,7 +13,7 @@ import { Chemical } from '../../models/chemical';
 })
 export class RegisterPage implements OnInit {
 
-  chemical: Chemical;
+  chemicalList: Chemical;
 
   constructor(
     private authService: AuthenticationService, 
@@ -31,9 +32,7 @@ export class RegisterPage implements OnInit {
 
   getChemicals() {
     this.http.get(this.apiService.chemicals_base_path).subscribe((response: any) => {
-      this.chemical = response;
-      console.log(response);
-      console.log(this.chemical);
+      this.chemicalList = response;
     })
   }
 
