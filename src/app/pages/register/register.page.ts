@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthenticationService } from '../../services/authentication.service';
-import { User, Chemicals } from '../../models/user';
+import { ApiService } from '../../services/api.service';
+import { Chemical } from '../../models/chemical';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +12,29 @@ import { User, Chemicals } from '../../models/user';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  chemical: Chemical;
+
+  constructor(
+    private authService: AuthenticationService, 
+    public http: HttpClient,
+    private router: Router,
+    public apiService: ApiService,
+    ) { }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
+    this.getChemicals();
+  }
+
+
+  getChemicals() {
+    this.http.get(this.apiService.chemicals_base_path).subscribe((response: any) => {
+      this.chemical = response;
+      console.log(response);
+      console.log(this.chemical);
+    })
   }
 
   register(form) {
