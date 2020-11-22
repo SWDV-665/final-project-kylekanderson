@@ -5,10 +5,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountPage } from './account.page';
 
-import { AccountPageRoutingModule } from './account-routing.module'
+import { AccountPageRoutingModule } from './account-routing.module';
+
+import { ComponentsModule } from './../components/components.module';
+
 
 @NgModule({
   imports: [
+    ComponentsModule,
     IonicModule,
     CommonModule,
     FormsModule,

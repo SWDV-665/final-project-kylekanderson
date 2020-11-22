@@ -5,6 +5,7 @@
                 <ion-img id="logo-img" part="image" [src]="image"></ion-img>
             </ion-item>
         </ion-list>
+        <app-navbar></app-navbar>
         <div id="account-header">
             <h1>My Account</h1>
             <p>Update your account-specific details below:</p>
@@ -13,65 +14,96 @@
         <form #form="ngForm" (ngSubmit)="submitForm(form)">
             <ion-list id="account-form" class="ion-justify-content-end">
                 <ion-item>
-                    <ion-label>Name</ion-label>
-                    <ion-input name="name" ngModel value="{{ user?.name }}" type="string"></ion-input>
+                    <ion-label position="fixed">Name</ion-label>
+                    <ion-input class="ion-text-right" name="name" ngModel value="{{ user?.name }}" type="string">
+                    </ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Email Address</ion-label>
-                    <ion-input name="email" ngModel value="{{ user?.email }}" type="string"></ion-input>
+                    <ion-input class="ion-text-right" name="email" ngModel value="{{ user?.email }}" type="string">
+                    </ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>User Name</ion-label>
-                    <ion-input name="user_name" ngModel value="{{ user?.user_name }}" type="string"></ion-input>
+                    <ion-input class="ion-text-right" name="user_name" ngModel value="{{ user?.user_name }}"
+                        type="string"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Password</ion-label>
-                    <ion-input name="password" ngModel type="string"></ion-input>
+                    <ion-input class="ion-text-right" name="password" ngModel type="password"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Re-Type Password</ion-label>
-                    <ion-input type="string"></ion-input>
+                    <ion-input class="ion-text-right" type="password"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Pool Volume</ion-label>
-                    <ion-input name="pool_gallons" ngModel value="{{ user?.pool_gallons }}" type="number"></ion-input>
+                    <ion-input class="ion-text-right" name="pool_gallons" ngModel value="{{ user?.pool_gallons }}"
+                        type="number"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Pool Type</ion-label>
-                    <ion-input name="pool_type" ngModel value="{{ user?.pool_type }}" type="string"></ion-input>
+                    <ion-select class="ion-text-right" name="pool_type" ngModel value="{{ user?.pool_type }}"
+                        type="string">
+                        <ion-select-option value="Fiberglass">Fiberglass</ion-select-option>
+                        <ion-select-option value="Concrete">Concrete</ion-select-option>
+                        <ion-select-option value="Vinyl">Vinyl</ion-select-option>
+
+                    </ion-select>
                 </ion-item>
                 <ion-item>
                     <ion-label>Chlorine Source</ion-label>
-                    <ion-input name="chlorine" ngModel value="{{ user?.chemicals[0].chlorine }}" type="string"></ion-input>
+                    <ion-select class="ion-text-right" name="chlorine" ngModel value="{{ user?.chemicals[0].chlorine }}"
+                        type="string">
+                        <ion-select-option value="Tri-Chlor">Tri-Chlor</ion-select-option>
+                        <ion-select-option value="Di-Chlor">Di-Chlor</ion-select-option>
+                    </ion-select>
                 </ion-item>
                 <ion-item>
                     <ion-label>pH Up</ion-label>
-                    <ion-input name="ph_up" ngModel value="{{ user?.chemicals[0].ph_up }}" type="string"></ion-input>
+                    <ion-select class="ion-text-right" name="ph_up" ngModel value="{{ user?.chemicals[0].ph_up }}"
+                        type="string">
+                        <ion-select-option value="Soda Ash">Soda Ash</ion-select-option>
+                        <ion-select-option value="Baking Soda">Baking Soda</ion-select-option>
+                    </ion-select>
                 </ion-item>
                 <ion-item>
                     <ion-label>ph Down</ion-label>
-                    <ion-input name="ph_down" ngModel value="{{ user?.chemicals[0].ph_down }}" type="string"></ion-input>
+                    <ion-select class="ion-text-right" name="ph_down" ngModel value="{{ user?.chemicals[0].ph_down }}"
+                        type="string">
+                        <ion-select-option value="Dry Acid">Dry Acid</ion-select-option>
+                        <ion-select-option value="Muriatic Acid">Muriatic Acid</ion-select-option>
+                    </ion-select>
                 </ion-item>
                 <ion-item>
                     <ion-label>Alkalinity Up</ion-label>
-                    <ion-input name="alkalinity_up" ngModel value="{{ user?.chemicals[0].alkalinity_up }}" type="string">
-                    </ion-input>
+                    <ion-select class="ion-text-right" name="alkalinity_up" ngModel
+                        value="{{ user?.chemicals[0].alkalinity_up }}" type="string">
+                        <ion-select-option value="Baking Soda">Baking Soda</ion-select-option>
+                    </ion-select>
                 </ion-item>
                 <ion-item>
                     <ion-label>Alkalinity Down</ion-label>
-                    <ion-input name="alkalinity_down" ngModel value="{{ user?.chemicals[0].alkalinity_down }}" type="string">
-                    </ion-input>
+                    <ion-select class="ion-text-right" name="alkalinity_down" ngModel
+                        value="{{ user?.chemicals[0].alkalinity_down }}" type="string">
+                        <ion-select-option value="Muriatic Acid">Muriatic Acid</ion-select-option>
+                    </ion-select>
                 </ion-item>
                 <ion-item>
                     <ion-label>Calcium Up</ion-label>
-                    <ion-input name="calcium_up" ngModel value="{{ user?.chemicals[0].calcium_up }}" type="string"></ion-input>
+                    <ion-select class="ion-text-right" name="calcium_up" ngModel
+                        value="{{ user?.chemicals[0].calcium_up }}" type="string">
+                        <ion-select-option value="Calcium Chloride">Calcium Chloride</ion-select-option>
+                    </ion-select>
                 </ion-item>
                 <ion-item>
                     <ion-label>Calcium Down</ion-label>
-                    <ion-input name="calcium_down" ngModel value="{{ user?.chemicals[0].calcium_down }}" type="string">
-                    </ion-input>
+                    <ion-select class="ion-text-right" name="calcium_down" ngModel
+                        value="{{ user?.chemicals[0].calcium_down }}" type="string">
+                                    <ion-select-option value="Muriatic Acid">Muriatic Acid</ion-select-option>
+                    </ion-select>
                 </ion-item>
-                <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Save</ion-button>
+                <ion-button size="medium" type="submit" [disabled]="form.invalid" expand="block">Save</ion-button>
             </ion-list>
         </form>
     </div>

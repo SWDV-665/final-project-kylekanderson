@@ -6,8 +6,13 @@ import { ReadingsPage } from './readings.page';
 
 import { ReadingsPageRoutingModule } from './readings-routing.module';
 
+import { ComponentsModule } from './../components/components.module';
+
+
+
 @NgModule({
   imports: [
+    ComponentsModule,
     IonicModule,
     CommonModule,
     FormsModule,

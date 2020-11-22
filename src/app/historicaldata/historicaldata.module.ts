@@ -7,8 +7,12 @@ import { HistoricalDataPage } from './historicaldata.page';
 
 import { HistoricalDataPageRoutingModule } from './historicaldata-routing.module';
 
+import { ComponentsModule } from './../components/components.module';
+
+
 @NgModule({
   imports: [
+    ComponentsModule,
     IonicModule,
     CommonModule,
     FormsModule,

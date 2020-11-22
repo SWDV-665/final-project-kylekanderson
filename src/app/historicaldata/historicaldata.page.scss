@@ -3,3 +3,9 @@
     margin-bottom: 1vh;
     max-height: 10vh;
 }
+
+@media (min-width:1024px) {
+    #logo-img::part(image) {
+        width: 100vw;
+    }
+}

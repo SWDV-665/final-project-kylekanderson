@@ -8,3 +8,9 @@
     display: flex;
     flex-flow: column nowrap;
 }
+
+@media (min-width:1024px) {
+    #logo-img::part(image) {
+        width: 100vw;
+    }
+}
