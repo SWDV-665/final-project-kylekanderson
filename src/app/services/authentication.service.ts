@@ -16,7 +16,7 @@ export class AuthenticationService {
   // Init with null to filter out the first value in a guard!
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   token = '';
-  user_base_path = 'http://18.212.74.206:8080/api/users';
+  user_base_path = 'https://18.212.74.206:8080/api/users';
 
   // Http Options
   httpOptions = {

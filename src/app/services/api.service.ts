@@ -13,9 +13,9 @@ import { flatMap, retry, catchError, map } from 'rxjs/operators';
 export class ApiService {
 
   // API path
-  readings_base_path = 'http://18.212.74.206:8080/api/readings';
-  user_base_path = 'http://18.212.74.206:8080/api/users';
-  chemicals_base_path = 'http://18.212.74.206:8080/api/chemicals';
+  readings_base_path = 'https://18.212.74.206:8080/api/readings';
+  user_base_path = 'https://18.212.74.206:8080/api/users';
+  chemicals_base_path = 'https://18.212.74.206:8080/api/chemicals';
 
   constructor(public http: HttpClient) { }
 
