@@ -8,6 +8,9 @@
     display: flex;
     flex-flow: column nowrap;
     
+    input#desktop-datepicker {
+        border: none;
+    }
 }
 
 /* 

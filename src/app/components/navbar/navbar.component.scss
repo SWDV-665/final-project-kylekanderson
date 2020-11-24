@@ -4,7 +4,9 @@
     }
 }
 
-ul {
+ul#desktop-nav {
+    margin-left: -16px;
+    margin-right: -16px;
     display: flex;
     justify-content: space-evenly;
     position: -webkit-sticky; /* Safari */
@@ -12,7 +14,6 @@ ul {
     top: 0;
     z-index: 999;
     list-style-type: none;
-    margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
