@@ -114,11 +114,11 @@ export class ApiService {
     return this.http
       .get(this.user_base_path + '/' + id)
       .pipe(
-        map((response:Response)=>response.json()),
+        map((response: Response) => response.json()),
         retry(2),
         catchError(this.handleError)
       )
-}
+  }
 
   getUserList(): Observable<object[]> {
     return this.http.get(this.user_base_path).
