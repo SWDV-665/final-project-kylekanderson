@@ -49,7 +49,6 @@ export class AccountPage {
   getUser() {
     this.http.get(this.apiService.user_base_path + '/' + this.authService.token).subscribe((response: any) => {
       this.user = response;
-      console.log(response);
       console.log(this.user);
     })
   }

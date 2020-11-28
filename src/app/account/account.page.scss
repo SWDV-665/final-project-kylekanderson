@@ -7,6 +7,11 @@
 #account-form {
     display: flex;
     flex-flow: column nowrap;
+
+    ion-select {
+        --placeholder-color: black;
+        --placeholder-opacity: 1;
+    }
 }
 
 @media (min-width:1024px) {
