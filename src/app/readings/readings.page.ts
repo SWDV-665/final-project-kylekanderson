@@ -3,6 +3,9 @@ import { Reading } from '../models/reading';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../services/authentication.service';
+import { ModalController } from '@ionic/angular';
+import { ActionModalComponent } from '../components/action-modal/action-modal.component';
+
 
 @Component({
   selector: 'app-readings',
@@ -18,7 +21,8 @@ export class ReadingsPage implements OnInit {
   constructor(
     public apiService: ApiService,
     public router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private modalController: ModalController
   ) {
 
     this.data = new Reading();
@@ -50,4 +54,15 @@ export class ReadingsPage implements OnInit {
     this.router.navigateByUrl('/', { replaceUrl: true });
   }
 
+  async settings() {
+    const modal = await this.modalController.create({
+      component: ActionModalComponent,
+      componentProps: {reading: this.data},
+      cssClass: 'setting-modal',
+      backdropDismiss: false,
+    });
+    modal.present();
+    const modalData = await modal.onWillDismiss();
+    this.router.navigate(['/tabs/historicaldata']);
+  }
 }

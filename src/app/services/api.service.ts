@@ -109,16 +109,23 @@ export class ApiService {
       )
   }
 
-  // Get single reading data by ID
-  getUser(id) {
-    return this.http
-      .get(this.user_base_path + '/' + id)
-      .pipe(
-        map((response: Response) => response.json()),
-        retry(2),
-        catchError(this.handleError)
-      )
+  async getUser(id): Promise<User> {
+    const response = await this.http.get<User>(this.user_base_path + '/' + id).toPromise();
+    return response;
   }
+
+  // Get single user data by ID
+  // getUser(id) {
+  //   return this.http
+  //     .get(this.user_base_path + '/' + id)
+  //     .pipe(
+  //       map((response: User) => {
+  //         return response;
+  //       }),
+  //       retry(2),
+  //       catchError(this.handleError)
+  //     )
+  // }
 
   getUserList(): Observable<object[]> {
     return this.http.get(this.user_base_path).
@@ -136,7 +143,7 @@ export class ApiService {
     console.log(id);
     console.log(item);
     return this.http
-      .put<User>(this.user_base_path + '/' + id, JSON.stringify(item), this.httpOptions)
+      .patch<User>(this.user_base_path + '/' + id, JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

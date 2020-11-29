@@ -14,7 +14,8 @@
             <ion-item>
                 <ion-label>Date</ion-label>
                 <input id="desktop-datepicker" type="date" [(ngModel)]="data.reading_date">
-                <ion-datetime class="ion-text-right" [(ngModel)]="data.reading_date" displayFormat="MM DD YY" placeholder="Select Date"></ion-datetime>
+                <ion-datetime class="ion-text-right" [(ngModel)]="data.reading_date" displayFormat="MM DD YY"
+                    placeholder="Select Date"></ion-datetime>
             </ion-item>
             <ion-item>
                 <ion-label>Free Chlorine</ion-label>
@@ -42,6 +43,9 @@
             </ion-item>
             <ion-button (click)="submitForm()">Save</ion-button>
             <ion-button expand="full" (click)="logout()">Logout</ion-button>
+            <ion-button (click)="settings()">
+                <ion-icon name="settings"></ion-icon>
+            </ion-button>
         </ion-list>
     </div>
 </ion-content>

@@ -7,7 +7,12 @@ export class User {
         public name: String,
         public pool_gallons: Number,
         public pool_type: String,
-        public chemicals: Chemicals,
+        public target_chlorine: Number,
+        public target_ph: Number,
+        public target_alkalinity: Number,
+        public target_calcium: Number,
+        public target_cyanuric_acid: Number,
+        public chemicals: Chemicals
     ) {}
 }
 

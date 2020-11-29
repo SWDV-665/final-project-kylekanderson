@@ -1,0 +1,9 @@
+<h2>
+  Results:
+</h2>
+<ul>
+  <li *ngFor="let recommendation of recommendations; index as i;">
+    {{recommendation}}
+  </li>
+</ul>
+<ion-button (click)="closeModal()">Close</ion-button>

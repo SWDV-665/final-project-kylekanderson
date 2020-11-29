@@ -6,5 +6,5 @@ export class Reading {
     ph: Number;
     alkalinity: Number;
     calcium: Number;
-    cyanuric_acid: Number;
+    cyanuric_acid: Number;    
 }

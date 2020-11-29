@@ -11,9 +11,10 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage';
+import { ActionModalComponent } from './components/action-modal/action-modal.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ActionModalComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
