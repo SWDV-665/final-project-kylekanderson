@@ -28,15 +28,7 @@ export class AccountPage {
     public apiService: ApiService,
     public router: Router
   ) {
-
-    let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
-
-    if (systemDark.matches) {
-      this.image = '/assets/logo_dark.png';
-    }
-    else {
       this.image = '/assets/logo.png';
-    }
   }
 
   ionViewDidEnter() {

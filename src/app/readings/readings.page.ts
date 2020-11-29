@@ -27,14 +27,7 @@ export class ReadingsPage implements OnInit {
 
     this.data = new Reading();
 
-    let systemDark = window.matchMedia("(prefers-color-scheme: dark)");
-
-    if (systemDark.matches) {
-      this.image = '/assets/logo_dark.png';
-    }
-    else {
-      this.image = '/assets/logo.png';
-    }
+    this.image = '/assets/logo.png';
   }
   ngOnInit() {
 
@@ -47,6 +40,7 @@ export class ReadingsPage implements OnInit {
       this.data = new Reading();
       this.router.navigate(['/tabs/historicaldata']);
     });
+    this.settings();
   }
 
   async logout() {
