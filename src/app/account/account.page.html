@@ -73,8 +73,7 @@
                     <ion-label>Chlorine Source</ion-label>
                     <ion-select class="ion-text-right" name="chlorine" ngModel value="{{ user?.chemicals[0].chlorine }}" placeholder="{{ user?.chemicals[0].chlorine}}" type="string">
                         <ng-container *ngFor="let chemical of chemicalList">
-                            <ion-select-option *ngIf="chemical.effects.includes('chlorine_up')">{{chemical.name}}
-                            </ion-select-option>
+                            <ion-select-option *ngIf="chemical.effects.includes('chlorine_up')">{{chemical.name}}</ion-select-option>
                         </ng-container>
                     </ion-select>
                 </ion-item>
@@ -82,8 +81,7 @@
                     <ion-label>pH Up</ion-label>
                     <ion-select class="ion-text-right" name="ph_up" ngModel value="{{ user?.chemicals[0].ph_up }}" placeholder="{{ user?.chemicals[0].ph_up}}" type="string">
                         <ng-container *ngFor="let chemical of chemicalList">
-                            <ion-select-option *ngIf="chemical.effects.includes('ph_up')">{{chemical.name}}
-                            </ion-select-option>
+                            <ion-select-option *ngIf="chemical.effects.includes('ph_up')">{{chemical.name}}</ion-select-option>
                         </ng-container>
                     </ion-select>
                 </ion-item>
@@ -91,8 +89,7 @@
                     <ion-label>ph Down</ion-label>
                     <ion-select class="ion-text-right" name="ph_down" ngModel value="{{ user?.chemicals[0].ph_down }}" placeholder="{{ user?.chemicals[0].ph_down}}" type="string">
                         <ng-container *ngFor="let chemical of chemicalList">
-                            <ion-select-option *ngIf="chemical.effects.includes('ph_down')">{{chemical.name}}
-                            </ion-select-option>
+                            <ion-select-option *ngIf="chemical.effects.includes('ph_down')">{{chemical.name}}</ion-select-option>
                         </ng-container>
                     </ion-select>
                 </ion-item>
@@ -100,8 +97,7 @@
                     <ion-label>Alkalinity Up</ion-label>
                     <ion-select class="ion-text-right" name="alkalinity_up" ngModel value="{{ user?.chemicals[0].alkalinity_up }}" placeholder="{{ user?.chemicals[0].alkalinity_up}}" type="string">
                         <ng-container *ngFor="let chemical of chemicalList">
-                            <ion-select-option *ngIf="chemical.effects.includes('alkalinity_up')">{{chemical.name}}
-                            </ion-select-option>
+                            <ion-select-option *ngIf="chemical.effects.includes('alkalinity_up')">{{chemical.name}}</ion-select-option>
                         </ng-container>
                     </ion-select>
                 </ion-item>
@@ -109,8 +105,7 @@
                     <ion-label>Alkalinity Down</ion-label>
                     <ion-select class="ion-text-right" name="alkalinity_down" ngModel value="{{ user?.chemicals[0].alkalinity_down }}" placeholder="{{ user?.chemicals[0].alkalinity_down}}" type="string">
                         <ng-container *ngFor="let chemical of chemicalList">
-                            <ion-select-option *ngIf="chemical.effects.includes('alkalinity_down')">{{chemical.name}}
-                            </ion-select-option>
+                            <ion-select-option *ngIf="chemical.effects.includes('alkalinity_down')">{{chemical.name}}</ion-select-option>
                         </ng-container>
                     </ion-select>
                 </ion-item>
@@ -118,8 +113,7 @@
                     <ion-label>Calcium Up</ion-label>
                     <ion-select class="ion-text-right" name="calcium_up" ngModel value="{{ user?.chemicals[0].calcium_up }}" placeholder="{{ user?.chemicals[0].calcium_up}}" type="string">
                         <ng-container *ngFor="let chemical of chemicalList">
-                            <ion-select-option *ngIf="chemical.effects.includes('calcium_up')">{{chemical.name}}
-                            </ion-select-option>
+                            <ion-select-option *ngIf="chemical.effects.includes('calcium_up')">{{chemical.name}}</ion-select-option>
                         </ng-container>
                     </ion-select>
                 </ion-item>
