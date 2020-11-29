@@ -1,9 +1,24 @@
-<h2>
-  Results:
-</h2>
-<ul>
-  <li *ngFor="let recommendation of recommendations; index as i;">
-    {{recommendation}}
-  </li>
-</ul>
-<ion-button (click)="closeModal()">Close</ion-button>
+<ion-content [fullscreen]="true">
+    <div class="ion-padding">
+        <h2>
+            Recommendations:
+        </h2>
+
+        <ion-list>
+            <ion-item *ngFor="let recommendation of recommendations; index as i;">
+                <ion-label>{{ recommendation }}</ion-label>
+                <ion-checkbox slot="end"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+
+
+        <!-- <ul>
+    <li *ngFor="let recommendation of recommendations; index as i;">
+        {{recommendation}}
+    </li>
+</ul> -->
+        <div id="close-button-container" class="ion-justify-content-end">
+            <ion-button (click)="closeModal()" class="ion-justify-content-end">Done</ion-button>
+        </div>
+    </div>
+</ion-content>
