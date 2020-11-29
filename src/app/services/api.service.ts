@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Reading } from '../models/reading';
 import { User } from '../models/user';
 import { Chemicals } from '../models/user';
+import { Chemical } from '../models/chemical';
 import { Observable, throwError } from 'rxjs';
 import { flatMap, retry, catchError, map } from 'rxjs/operators';
 
@@ -136,6 +137,11 @@ export class ApiService {
           return throwError('Something went wrong!');
         })
       )
+  }
+
+  async getChemicalList(): Promise<Chemical[]> {
+    const response = await this.http.get<Chemical[]>(this.chemicals_base_path + '/').toPromise();
+    return response;
   }
 
   // Update item by id
