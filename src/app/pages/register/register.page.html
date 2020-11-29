@@ -114,6 +114,16 @@
                                 </ng-container>
                             </ion-select>
                         </ion-item>
+                        <ion-item>
+                            <ion-label>Cyanuric Acid Up</ion-label>
+                            <ion-select name="cyanuric_acid_up" ngModel placeholder="Select One">
+                                <ng-container *ngFor="let chemical of chemicalList">
+                                    <ion-select-option *ngIf="chemical.effects.includes('cyanuric_acid_up')">{{chemical.name}}
+                                    </ion-select-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+
                     </div>
                     <div padding>
                         <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
