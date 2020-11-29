@@ -191,8 +191,8 @@ export class HistoricalDataPage implements AfterViewInit {
                 this.readings = data;
 
                 this.readings.sort(function (a, b) {
-                    var dateA = new Date(a.reading_date),
-                        dateB = new Date(b.reading_date);
+                    let dateA = +(new Date(a.reading_date)),
+                        dateB = +(new Date(b.reading_date));
                     return dateA - dateB;
                 });
 
