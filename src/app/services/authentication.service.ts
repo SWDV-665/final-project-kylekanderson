@@ -52,12 +52,10 @@ export class AuthenticationService {
   async loadToken() {
     const token = await Storage.get({ key: TOKEN_KEY });
     if (token && token.value) {
-      console.log('set token: ', token.value);
       this.token = token.value;
       this.isAuthenticated.next(true);
       return token.value;
     } else {
-      console.log('no token found');
       this.isAuthenticated.next(false);
     }
   }

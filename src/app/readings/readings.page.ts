@@ -35,7 +35,6 @@ export class ReadingsPage implements OnInit {
 
   submitForm() {
     this.data.user_id = this.authService.token;
-    console.log(this.data);
     this.apiService.createReading(this.data).subscribe((response) => {
       this.data = new Reading();
       this.router.navigate(['/tabs/historicaldata']);

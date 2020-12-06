@@ -187,7 +187,6 @@ export class HistoricalDataPage implements AfterViewInit {
         this.apiService
             .getReadings(this.authService.token)
             .subscribe((data: any) => {
-                console.log(data);
                 this.readings = data;
 
                 this.readings.sort(function (a, b) {

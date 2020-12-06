@@ -48,14 +48,10 @@ export class ActionModalComponent implements OnInit {
     }
 
     generateRecommendations(reading: Reading) {
-        console.log('running');
         for (let key in reading) {
             if (key == 'free_chlorine') {
                 let chlorineReading = reading[key];
-                console.log(chlorineReading);
-                console.log(this.user.target_chlorine);
                 if (chlorineReading < this.user.target_chlorine) {
-                    console.log('low chlorine');
                     this.recommendation(
                         this.user.target_chlorine,
                         chlorineReading,
@@ -146,53 +142,43 @@ export class ActionModalComponent implements OnInit {
     // async getUser() {
     //   const response = this.http.get<User>(this.apiService.user_base_path + '/' + this.authService.token).toPromise();
     //   response.then(data => this.user = data);
-    //   console.log(this.user);
     //   return response;
     // }
 
     // async getChemicals() {
     //   const response = this.http.get<Chemical>(this.apiService.chemicals_base_path).toPromise();
     //   response.then(data => this.chemicalList = data);
-    //   console.log(this.chemicalList);
     //   return response;
     // }
 
     recommendation(target, actual, volume, chemical, property) {
         let foundChemical = this.chemicalList.find(i => i.name === chemical);
         // let foundChemical = this.chemicalList.filter((i) => i.name == chemical);
-        console.log('foundChemical', foundChemical);
         let difference = target - actual;
         let effect = foundChemical[property];
-        console.log('difference', difference);
-        console.log('effect', effect);
-        console.log(volume);
         let amountToAdd = Math.round((difference * effect * volume) / 10000) / 100;
         this.recommendations.push('Add ' + amountToAdd + 'oz of ' + chemical);
     }
 
     async getUser() {
         let response = await this.apiService.getUser(this.authService.token);
-        console.log(response);
         this.user = response;
     }
 
     // async getUser() {
     //   this.http.get(this.apiService.user_base_path + '/' + this.authService.token).subscribe((response: any) => {
     //     this.user = response;
-    //     console.log(this.user);
     //   })
     // }
 
     async getChemicals() {
         let response = await this.apiService.getChemicalList();
         this.chemicalList = response;
-        console.log(this.chemicalList);
     }
 
     // async getChemicals() {
     //   this.http.get(this.apiService.chemicals_base_path).subscribe((response: any) => {
     //     this.chemicalList = response;
-    //     console.log(this.chemicalList);
     //   })
     // }
 }

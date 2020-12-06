@@ -146,8 +146,6 @@ export class ApiService {
 
   // Update item by id
   updateUser(id, item): Observable<User> {
-    console.log(id);
-    console.log(item);
     return this.http
       .patch<User>(this.user_base_path + '/' + id, JSON.stringify(item), this.httpOptions)
       .pipe(

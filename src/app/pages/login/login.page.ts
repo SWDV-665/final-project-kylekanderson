@@ -37,7 +37,6 @@ export class LoginPage implements OnInit {
 
   async checkToken() {
     const token = await Storage.get({ key: TOKEN_KEY });
-    console.log(token);
 
     if (token.value !== null) {
       this.getBiometrics();
@@ -72,12 +71,10 @@ export class LoginPage implements OnInit {
 
     this.authService.login(this.credentials.value).subscribe(
       async (res) => {
-        console.log(res);
         if (res._id) {
           await loading.dismiss();
           await Storage.set({ key: TOKEN_KEY, value: res._id });
           const authTokenExists = await Storage.get({ key: TOKEN_KEY });
-          console.log(authTokenExists);
           this.authService.token = res._id;
           this.authService.isAuthenticated.next(true);
           this.router.navigateByUrl('/tabs', { replaceUrl: true });
