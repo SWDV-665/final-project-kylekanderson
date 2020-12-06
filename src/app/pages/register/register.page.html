@@ -1,8 +1,8 @@
 <ion-content color="primary">
-    <form #form="ngForm" (ngSubmit)="register(form)">
+    <form #form="ngForm" (ngSubmit)="register(form)" [mustMatch]="['password', 'confirm']">
         <ion-grid>
             <ion-row color="primary" justify-content-center>
-                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
                     <div text-center>
                         <h1>Register</h1>
                     </div>
@@ -18,10 +18,10 @@
                             <ion-input name="user_name" type="text" placeholder="Username" ngModel required></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+                            <ion-input name="password" type="password" placeholder="Password" ngModel required minlength="6"></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-input name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
+                            <ion-input name="confirm" type="password" placeholder="Password again" ngModel required minlength="6"></ion-input>
                         </ion-item>
                         <h2>Pool Information:</h2>
                         <ion-item>
