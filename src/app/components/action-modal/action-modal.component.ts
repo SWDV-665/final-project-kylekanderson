@@ -166,7 +166,7 @@ export class ActionModalComponent implements OnInit {
         console.log('difference', difference);
         console.log('effect', effect);
         console.log(volume);
-        let amountToAdd = Math.round((difference * effect * volume) / 10000);
+        let amountToAdd = Math.round((difference * effect * volume) / 10000) / 100;
         this.recommendations.push('Add ' + amountToAdd + 'oz of ' + chemical);
     }
 
