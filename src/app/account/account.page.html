@@ -28,14 +28,6 @@
                     <ion-input class="ion-text-right" name="user_name" ngModel value="{{ user?.user_name }}" type="string"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label>Password</ion-label>
-                    <ion-input class="ion-text-right" name="password" ngModel type="password"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Re-Type Password</ion-label>
-                    <ion-input class="ion-text-right" type="password"></ion-input>
-                </ion-item>
-                <ion-item>
                     <ion-label>Pool Volume</ion-label>
                     <ion-input class="ion-text-right" name="pool_gallons" ngModel value="{{ user?.pool_gallons }}" type="number"></ion-input>
                 </ion-item>
@@ -132,6 +124,8 @@
                     </ion-select>
                 </ion-item>
                 <ion-button size="medium" type="submit" [disabled]="form.invalid" expand="block">Save</ion-button>
+                <ion-button size="medium" (click)="changePassword()">Change Password</ion-button>
+                <ion-button id="btn-logout" expand="full" (click)="logout()">Logout</ion-button>
             </ion-list>
         </form>
     </div>

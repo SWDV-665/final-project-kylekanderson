@@ -7,6 +7,8 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { flatMap, retry, catchError, map } from 'rxjs/operators';
+import { AlertController, ToastController } from '@ionic/angular';
+import { PasswordValidator } from './../validators/password.validator';
 import * as $ from 'jquery';
 
 
@@ -26,9 +28,12 @@ export class AccountPage {
     private authService: AuthenticationService,
     public http: HttpClient,
     public apiService: ApiService,
-    public router: Router
+    public router: Router,
+    public alertController: AlertController,
+    public toastController: ToastController,
+    public passwordValidator: PasswordValidator
   ) {
-      this.image = '/assets/logo.png';
+    this.image = '/assets/logo.png';
   }
 
   ionViewDidEnter() {
@@ -54,8 +59,9 @@ export class AccountPage {
 
   submitForm(form) {
     console.log(form);
+    console.log(this.user);
     let chemicals = new Chemicals(form.value.chlorine, form.value.ph_up, form.value.ph_down, form.value.alkalinity_up, form.value.alkalinity_down, form.value.calcium_up, form.value.calcium_down, form.value.cyanuric_acid_up);
-    let user = new User(form.value.user_name, form.value.email, 'password', form.value.name, form.value.pool_gallons, form.value.pool_type, form.value.target_chlorine, form.value.target_ph, form.value.target_alkalinity, form.value.target_calcium, form.value.target_cyanuric_acid, chemicals);
+    let user = new User(form.value.user_name, form.value.email, this.user.password, form.value.name, form.value.pool_gallons, form.value.pool_type, form.value.target_chlorine, form.value.target_ph, form.value.target_alkalinity, form.value.target_calcium, form.value.target_cyanuric_acid, chemicals);
     console.log(chemicals);
     console.log(user);
     this.apiService.updateUser(this.authService.token, user).subscribe((response) => {
@@ -63,6 +69,80 @@ export class AccountPage {
       this.router.navigate(['/tabs/readings']);
     });
   }
+
+  async logout() {
+    await this.authService.logout();
+    this.router.navigateByUrl('/', { replaceUrl: true });
+  }
+
+
+  changePassword() {
+    this.presentAlertPrompt();
+  }
+
+  async presentAlertPrompt() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Change Password',
+      inputs: [
+        {
+          name: 'password',
+          type: 'password',
+          placeholder: 'Password',
+          cssClass: 'passwordInput',
+          attributes: {
+            inputmode: 'decimal'
+          }
+        },
+        {
+          name: 'confirm',
+          type: 'password',
+          placeholder: 'Confirm',
+          cssClass: 'passwordInput',
+          attributes: {
+            inputmode: 'decimal'
+          }
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: data => {
+            if (this.passwordValidator.isValid(data.password, data.confirm)) {
+              this.user.password = data.password;
+              this.apiService.updateUser(this.authService.token, this.user).subscribe((response) => {
+                console.log(response);
+                this.presentToast("Password changed successfully.");
+              });
+            }
+            else {
+              this.presentToast("Password doesn't meet requirements or doesn't match. Please try again.");
+              return false;
+            }
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
 
 
   // getUserList() {
