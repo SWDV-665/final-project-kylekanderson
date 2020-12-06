@@ -1,14 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
-import { Chemicals, User } from '../../models/user';
+import { User } from '../../models/user';
 import { Chemical } from '../../models/chemical';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
-import { generate } from 'rxjs';
 import { Reading } from 'src/app/models/reading';
-import { timeout, filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-action-modal',
@@ -18,9 +15,7 @@ import { timeout, filter } from 'rxjs/operators';
 export class ActionModalComponent implements OnInit {
     @Input() reading: Reading;
     user: User;
-    userResponse: any;
     chemicalList: Chemical[];
-    chemicalsResponse: any;
     recommendations: string[] = [];
 
     constructor(
@@ -32,25 +27,31 @@ export class ActionModalComponent implements OnInit {
     ) {}
 
     async ngOnInit() {
-        let result = await this.initializeData();
-
+        // get our readings from the navParams
         this.reading = this.navParams.get('reading');
+
+        // generate recommendations for each of the readings
         this.generateRecommendations(this.reading);
     }
 
-    async initializeData() {
-        this.userResponse = await this.getUser();
-        this.chemicalsResponse = await this.getChemicals();
-    }
-
+    /**
+     * dismiss the modal
+     */
     closeModal() {
         this.modalController.dismiss();
     }
 
+    /**
+     * Evaluates a reading value to generate a water treatment recommendation
+     * @param reading a water chemistry reading
+     */
     generateRecommendations(reading: Reading) {
+        // TODO: consider refactoring to eliminate repitition
+        // iterate over the reading data
         for (let key in reading) {
             if (key == 'free_chlorine') {
                 let chlorineReading = reading[key];
+                // low chlorine
                 if (chlorineReading < this.user.target_chlorine) {
                     this.recommendation(
                         this.user.target_chlorine,
@@ -60,9 +61,11 @@ export class ActionModalComponent implements OnInit {
                         key
                     );
                 }
+                // can't treat a high chlorine level, so do nothing else here
             }
             if (key == 'ph') {
                 let phReading = reading[key];
+                // high pH
                 if (phReading > this.user.target_ph) {
                     this.recommendation(
                         this.user.target_ph,
@@ -72,6 +75,7 @@ export class ActionModalComponent implements OnInit {
                         key
                     );
                 }
+                // low pH
                 if (phReading < this.user.target_ph) {
                     this.recommendation(
                         this.user.target_ph,
@@ -84,6 +88,7 @@ export class ActionModalComponent implements OnInit {
             }
             if (key == 'alkalinity') {
                 let alkalinityReading = reading[key];
+                // high alkalinity
                 if (alkalinityReading > this.user.target_alkalinity) {
                     this.recommendation(
                         this.user.target_alkalinity,
@@ -93,6 +98,7 @@ export class ActionModalComponent implements OnInit {
                         key
                     );
                 }
+                // low alkalinity
                 if (alkalinityReading < this.user.target_alkalinity) {
                     this.recommendation(
                         this.user.target_alkalinity,
@@ -105,6 +111,7 @@ export class ActionModalComponent implements OnInit {
             }
             if (key == 'calcium') {
                 let calciumReading = reading[key];
+                // high calcium
                 if (calciumReading > this.user.target_calcium) {
                     this.recommendation(
                         this.user.target_calcium,
@@ -114,6 +121,7 @@ export class ActionModalComponent implements OnInit {
                         key
                     );
                 }
+                // low calcium
                 if (calciumReading < this.user.target_calcium) {
                     this.recommendation(
                         this.user.target_calcium,
@@ -126,6 +134,7 @@ export class ActionModalComponent implements OnInit {
             }
             if (key == 'cyanuric_acid') {
                 let cyanuricAcidReading = reading[key];
+                // low cyanuric acid
                 if (cyanuricAcidReading < this.user.target_cyanuric_acid) {
                     this.recommendation(
                         this.user.target_cyanuric_acid,
@@ -135,50 +144,48 @@ export class ActionModalComponent implements OnInit {
                         key
                     );
                 }
+                // can't treat high cyanuric acid, so do nothing here
             }
         }
     }
 
-    // async getUser() {
-    //   const response = this.http.get<User>(this.apiService.user_base_path + '/' + this.authService.token).toPromise();
-    //   response.then(data => this.user = data);
-    //   return response;
-    // }
-
-    // async getChemicals() {
-    //   const response = this.http.get<Chemical>(this.apiService.chemicals_base_path).toPromise();
-    //   response.then(data => this.chemicalList = data);
-    //   return response;
-    // }
-
+    /**
+     * Analyzes supplied parameters to generate a recommendation to improve water chemistry
+     * @param target user's target chemical Level
+     * @param actual actual chemical level (from reading)
+     * @param volume pool volume (in gallons)
+     * @param chemical chemical being adjusted
+     * @param property the `chemical`'s effect on water chemistry
+     */
     recommendation(target, actual, volume, chemical, property) {
+        // find the user's chemical on our list of chemicals (chemicalList object)
         let foundChemical = this.chemicalList.find(i => i.name === chemical);
-        // let foundChemical = this.chemicalList.filter((i) => i.name == chemical);
+
         let difference = target - actual;
+
+        // the effect the chemical has on water chemistry
         let effect = foundChemical[property];
+
+        // calculate an amount to add for the chemical
         let amountToAdd = Math.round((difference * effect * volume) / 10000) / 100;
+
+        // generate a recommendation string and push it onto the recommendations array
         this.recommendations.push('Add ' + amountToAdd + 'oz of ' + chemical);
     }
 
+    /**
+     * Construct the user object from the service layer
+     */
     async getUser() {
         let response = await this.apiService.getUser(this.authService.token);
         this.user = response;
     }
 
-    // async getUser() {
-    //   this.http.get(this.apiService.user_base_path + '/' + this.authService.token).subscribe((response: any) => {
-    //     this.user = response;
-    //   })
-    // }
-
+    /**
+     * Construct the chemicalList object from the service layer
+     */
     async getChemicals() {
         let response = await this.apiService.getChemicalList();
         this.chemicalList = response;
     }
-
-    // async getChemicals() {
-    //   this.http.get(this.apiService.chemicals_base_path).subscribe((response: any) => {
-    //     this.chemicalList = response;
-    //   })
-    // }
 }

@@ -11,8 +11,10 @@
             <p>Update your account-specific details below:</p>
 
         </div>
+        <!-- User Account Form -->
         <form #form="ngForm" (ngSubmit)="submitForm(form)">
             <ion-list id="account-form" class="ion-justify-content-end">
+                <!-- Each item integrates with the user object to display relevant data -->
                 <ion-item>
                     <ion-label position="fixed">Name</ion-label>
                     <ion-input class="ion-text-right" name="name" ngModel value="{{ user?.name }}" type="string">
@@ -60,7 +62,6 @@
                     <ion-label>Target Cyanuric Acid</ion-label>
                     <ion-input class="ion-text-right" name="target_cyanuric_acid" ngModel value="{{ user?.target_cyanuric_acid }}" type="number"></ion-input>
                 </ion-item>
-
                 <ion-item>
                     <ion-label>Chlorine Source</ion-label>
                     <ion-select class="ion-text-right" name="chlorine" ngModel value="{{ user?.chemicals[0].chlorine }}" placeholder="{{ user?.chemicals[0].chlorine}}" type="string">

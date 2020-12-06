@@ -11,6 +11,7 @@ import * as moment from 'moment';
     styleUrls: ['historicaldata.page.scss'],
 })
 export class HistoricalDataPage implements AfterViewInit {
+    // get the canvas objects from the view
     @ViewChild('chlorineCanvas') private chlorineCanvas: ElementRef;
     @ViewChild('phCanvas') private phCanvas: ElementRef;
     @ViewChild('alkalinityCanvas') private alkalinityCanvas: ElementRef;
@@ -44,6 +45,9 @@ export class HistoricalDataPage implements AfterViewInit {
 
     ngAfterViewInit() {}
 
+    /**
+     * Defines parameters for the chlorine chart
+     */
     buildChlorineChart() {
         this.lineChart = new Chart(this.chlorineCanvas.nativeElement, {
             type: 'line',
@@ -79,6 +83,9 @@ export class HistoricalDataPage implements AfterViewInit {
         });
     }
 
+    /**
+     * Defines parameters for the pH chart
+     */
     buildPhChart() {
         this.lineChart = new Chart(this.phCanvas.nativeElement, {
             type: 'line',
@@ -112,6 +119,9 @@ export class HistoricalDataPage implements AfterViewInit {
         });
     }
 
+    /**
+     * Defines parameters for the alkalinity chart
+     */
     buildAlkalinityChart() {
         this.lineChart = new Chart(this.alkalinityCanvas.nativeElement, {
             type: 'line',
@@ -135,6 +145,9 @@ export class HistoricalDataPage implements AfterViewInit {
         });
     }
 
+    /**
+     * Defines parameters for the calcium chart
+     */
     buildCalciumChart() {
         this.lineChart = new Chart(this.calciumCanvas.nativeElement, {
             type: 'line',
@@ -158,6 +171,9 @@ export class HistoricalDataPage implements AfterViewInit {
         });
     }
 
+    /**
+     * Defines parameters for the cyanuric acid chart
+     */
     buildCyaChart() {
         this.lineChart = new Chart(this.cyaCanvas.nativeElement, {
             type: 'line',
@@ -183,6 +199,9 @@ export class HistoricalDataPage implements AfterViewInit {
 
     ngOnInit() {}
 
+    /**
+     * Constructs chars from readings pulled from the service layer
+     */
     getReadingList() {
         this.apiService
             .getReadings(this.authService.token)

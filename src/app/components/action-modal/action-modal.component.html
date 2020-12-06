@@ -3,20 +3,13 @@
         <h2>
             Recommendations:
         </h2>
-
+        <!-- Generates a list of recommendations -->
         <ion-list>
             <ion-item *ngFor="let recommendation of recommendations; index as i;">
                 <ion-label>{{ recommendation }}</ion-label>
                 <ion-checkbox slot="end"></ion-checkbox>
             </ion-item>
         </ion-list>
-
-
-        <!-- <ul>
-    <li *ngFor="let recommendation of recommendations; index as i;">
-        {{recommendation}}
-    </li>
-</ul> -->
         <div id="close-button-container" class="ion-justify-content-end">
             <ion-button (click)="closeModal()" class="ion-justify-content-end">Done</ion-button>
         </div>

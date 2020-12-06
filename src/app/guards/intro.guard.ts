@@ -12,6 +12,9 @@ export class IntroGuard implements CanLoad {
 
   constructor(private router: Router) { }
 
+  /**
+   * Checks if the user has seen the intro yet
+   */
   async canLoad(): Promise<boolean> {
     const hasSeenIntro = await Storage.get({ key: INTRO_KEY });
     if (hasSeenIntro && (hasSeenIntro.value === 'true')) {
