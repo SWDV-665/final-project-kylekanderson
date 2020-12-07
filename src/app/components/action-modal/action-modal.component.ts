@@ -171,7 +171,7 @@ export class ActionModalComponent implements OnInit {
         let effect = foundChemical[property];
 
         // calculate an amount to add for the chemical
-        let amountToAdd = Math.round((difference * effect * volume) / 10000) / 100;
+        let amountToAdd = Math.round((difference / effect * volume) / 1000) / 10;
 
         // generate a recommendation string and push it onto the recommendations array
         this.recommendations.push('Add ' + amountToAdd + 'oz of ' + chemical);
