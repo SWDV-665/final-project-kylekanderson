@@ -1,6 +1,20 @@
-<ul id="desktop-nav">
-  <li><a class="nav-link" href="/tabs/readings">Readings</a></li>
-  <li><a class="nav-link" href="/tabs/historicaldata">Historical Data</a></li>
-  <li><a class="nav-link" href="/tabs/account">Account</a></li>
-  <li><a class="nav-link" (click)="logout()">Logout</a></li>
-</ul>
+<ion-header id="desktop-nav">
+    <ion-toolbar>
+        <ion-row class="ion-align-items-center">
+            <ion-col size="12">
+                <div class="navbar ion-text-center">
+                    <ion-button fill="clear" routerLink="/tabs/readings" routerDirection="root" routerLinkActive="active-link" class="link">
+                        Readings
+                    </ion-button>
+                    <ion-button fill="clear" routerLink="/tabs/historicaldata" routerDirection="root" routerLinkActive="active-link" class="link">
+                        Historical Data
+                    </ion-button>
+                    <ion-button fill="clear" routerLink="/tabs/account" routerDirection="root" routerLinkActive="active-link" class="link">
+                        Account
+                    </ion-button>
+                    <ion-button fill="clear" class="link" (click)="logout()">Logout</ion-button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>

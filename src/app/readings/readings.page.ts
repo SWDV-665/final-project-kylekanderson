@@ -37,9 +37,8 @@ export class ReadingsPage implements OnInit {
     this.data.user_id = this.authService.token;
     this.apiService.createReading(this.data).subscribe((response) => {
       this.data = new Reading();
-      this.router.navigate(['/tabs/historicaldata']);
     });
-    this.settings();
+    this.actionModal();
   }
 
   async logout() {
@@ -47,7 +46,7 @@ export class ReadingsPage implements OnInit {
     this.router.navigateByUrl('/', { replaceUrl: true });
   }
 
-  async settings() {
+  async actionModal() {
     const modal = await this.modalController.create({
       component: ActionModalComponent,
       componentProps: {reading: this.data},
@@ -55,7 +54,8 @@ export class ReadingsPage implements OnInit {
       backdropDismiss: false,
     });
     modal.present();
-    const modalData = await modal.onWillDismiss();
-    this.router.navigate(['/tabs/historicaldata']);
+    await modal.onWillDismiss().then(() => {
+      this.router.navigate(['/tabs/historicaldata']);
+    })
   }
 }
