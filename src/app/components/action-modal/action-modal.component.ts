@@ -27,6 +27,10 @@ export class ActionModalComponent implements OnInit {
     ) {}
 
     async ngOnInit() {
+        // constuct the user and chemicalList objects
+        await this.getUser();
+        await this.getChemicals();
+        
         // get our readings from the navParams
         this.reading = this.navParams.get('reading');
 
