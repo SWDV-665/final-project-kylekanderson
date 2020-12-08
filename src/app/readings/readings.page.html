@@ -1,47 +1,44 @@
 <ion-content [fullscreen]="true">
-    <div class="ion-padding">
-        <ion-list>
-            <ion-item>
-                <ion-img id="logo-img" part="image" [src]="image"></ion-img>
-            </ion-item>
-        </ion-list>
-        <app-navbar></app-navbar>
-        <div id="readings-header">
-            <h1>Readings</h1>
-            <p>Enter your water chemistry readings below:</p>
-        </div>
-        <ion-list id="readings-form" class="ion-justify-content-end">
-            <ion-item>
-                <ion-label>Date</ion-label>
-                <input id="desktop-datepicker" type="date" [(ngModel)]="data.reading_date">
-                <ion-datetime class="ion-text-right" [(ngModel)]="data.reading_date" displayFormat="MM DD YY"
-                    placeholder="Select Date"></ion-datetime>
-            </ion-item>
-            <ion-item>
-                <ion-label>Free Chlorine</ion-label>
-                <ion-input class="ion-text-right" [(ngModel)]="data.free_chlorine" type="number"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label>Total Chlorine</ion-label>
-                <ion-input class="ion-text-right" [(ngModel)]="data.combined_chlorine" type="number"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label>pH</ion-label>
-                <ion-input class="ion-text-right" [(ngModel)]="data.ph" type="number"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label>Alkalinity</ion-label>
-                <ion-input class="ion-text-right" [(ngModel)]="data.alkalinity" type="number"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label>Calcium Hardness</ion-label>
-                <ion-input class="ion-text-right" [(ngModel)]="data.calcium" type="number"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label>Cyanuric Acid</ion-label>
-                <ion-input class="ion-text-right" [(ngModel)]="data.cyanuric_acid" type="number"></ion-input>
-            </ion-item>
-            <ion-button (click)="submitForm()">Save</ion-button>
-        </ion-list>
+    <ion-list>
+        <ion-item>
+            <ion-img id="logo-img" part="image" [src]="image"></ion-img>
+        </ion-item>
+    </ion-list>
+    <app-navbar></app-navbar>
+    <div id="readings-header">
+        <h1>Readings</h1>
+        <p>Enter your water chemistry readings below:</p>
     </div>
+    <ion-list id="readings-form" class="ion-justify-content-end">
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <input id="desktop-datepicker" type="date" [(ngModel)]="data.reading_date">
+            <ion-datetime class="ion-text-right" [(ngModel)]="data.reading_date" displayFormat="MM DD YY" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label>Free Chlorine</ion-label>
+            <ion-input class="ion-text-right" [(ngModel)]="data.free_chlorine" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Total Chlorine</ion-label>
+            <ion-input class="ion-text-right" [(ngModel)]="data.combined_chlorine" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>pH</ion-label>
+            <ion-input class="ion-text-right" [(ngModel)]="data.ph" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Alkalinity</ion-label>
+            <ion-input class="ion-text-right" [(ngModel)]="data.alkalinity" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Calcium Hardness</ion-label>
+            <ion-input class="ion-text-right" [(ngModel)]="data.calcium" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cyanuric Acid</ion-label>
+            <ion-input class="ion-text-right" [(ngModel)]="data.cyanuric_acid" type="number"></ion-input>
+        </ion-item>
+        <ion-button (click)="submitForm()">Save</ion-button>
+    </ion-list>
 </ion-content>

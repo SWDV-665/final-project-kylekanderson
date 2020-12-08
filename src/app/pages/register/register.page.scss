@@ -1,8 +1,5 @@
-ion-item{
-    --background: #3880ff;
-    --color: #fff;
-}
-
-ion-button{
-    --background: #062f77;
+#logo-img::part(image) {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    max-height: 10vh;
 }

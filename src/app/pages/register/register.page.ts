@@ -14,13 +14,17 @@ import { Chemical } from '../../models/chemical';
 export class RegisterPage implements OnInit {
 
   chemicalList: Chemical;
+  image: String;
 
   constructor(
     private authService: AuthenticationService, 
     public http: HttpClient,
     private router: Router,
     public apiService: ApiService,
-    ) { }
+    ) {
+      this.image = './../assets/logo.png';
+
+    }
 
   ngOnInit() {
   }
