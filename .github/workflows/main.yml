@@ -15,8 +15,10 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: '10.x'
+    - name: Install Ionic
+      run: npm install -g @ionic/cli
     - run: npm install
-    - run: npm run ionic:build --prod
+    - run: ionic build --production
     - uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting
