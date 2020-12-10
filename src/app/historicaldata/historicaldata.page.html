@@ -5,30 +5,32 @@
         </ion-item>
     </ion-list>
     <app-navbar></app-navbar>
-    <!-- Each chart is drawn on a canvas object -->
-    <ion-card>
-        <ion-card-content>
-            <canvas #chlorineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-content>
-            <canvas #phCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-content>
-            <canvas #alkalinityCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-content>
-            <canvas #calciumCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-content>
-            <canvas #cyaCanvas style="position: relative; height:20vh; width:40vw"></canvas>
-        </ion-card-content>
-    </ion-card>
+    <div class="ion-padding">
+        <!-- Each chart is drawn on a canvas object -->
+        <ion-card>
+            <ion-card-content>
+                <canvas #chlorineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-content>
+                <canvas #phCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-content>
+                <canvas #alkalinityCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-content>
+                <canvas #calciumCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-content>
+                <canvas #cyaCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+            </ion-card-content>
+        </ion-card>
+    </div>
 </ion-content>
