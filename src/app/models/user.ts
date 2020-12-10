@@ -25,7 +25,6 @@ export class Chemicals {
         public alkalinity_up: String,
         public alkalinity_down: String,
         public calcium_up: String,
-        public calcium_down: String,
         public cyanuric_acid_up: String
     )
     {}

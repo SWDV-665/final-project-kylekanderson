@@ -108,14 +108,6 @@
                                 </ion-select>
                             </ion-item>
                             <ion-item>
-                                <ion-label>Calcium Down</ion-label>
-                                <ion-select name="calcium_down" ngModel placeholder="Select One">
-                                    <ng-container *ngFor="let chemical of chemicalList">
-                                        <ion-select-option *ngIf="chemical.effects.includes('calcium_down')">{{chemical.name}}</ion-select-option>
-                                    </ng-container>
-                                </ion-select>
-                            </ion-item>
-                            <ion-item>
                                 <ion-label>Cyanuric Acid Up</ion-label>
                                 <ion-select name="cyanuric_acid_up" ngModel placeholder="Select One">
                                     <ng-container *ngFor="let chemical of chemicalList">

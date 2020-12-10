@@ -115,16 +115,6 @@ export class ActionModalComponent implements OnInit {
             }
             if (key == 'calcium') {
                 let calciumReading = reading[key];
-                // high calcium
-                if (calciumReading > this.user.target_calcium) {
-                    this.recommendation(
-                        this.user.target_calcium,
-                        calciumReading,
-                        this.user.pool_gallons,
-                        this.user.chemicals[0].calcium_down,
-                        key
-                    );
-                }
                 // low calcium
                 if (calciumReading < this.user.target_calcium) {
                     this.recommendation(
