@@ -71,6 +71,7 @@ export class AccountPage {
     let user = new User(form.value.user_name, form.value.email, this.user.password, form.value.name, form.value.pool_gallons, form.value.pool_type, form.value.target_chlorine, form.value.target_ph, form.value.target_alkalinity, form.value.target_calcium, form.value.target_cyanuric_acid, chemicals);
     this.apiService.updateUser(this.authService.token, user).subscribe(() => {
       this.router.navigate(['/tabs/readings']);
+      this.presentToast("Account updated successfully.");
     });
   }
 
