@@ -8,8 +8,12 @@ https://github.com/kylekanderson/PoolPal-Server
 A demo of the application is hosted at: https://poolpal-1a57b.web.app
 
 The following credentials can be used to access the demo application:
+
 Email address: test@test.com
+
 Password: password
+
+Or, you are welcome to register your own account using the application.
 
 When opening the application for the first time, users will be presented with a set of introductory slides:
 <br><img src="https://github.com/kylekanderson/PoolPal/blob/main/design/Screenshots/intro_slides.png" width="300">
