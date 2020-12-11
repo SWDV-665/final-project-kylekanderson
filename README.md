@@ -4,6 +4,8 @@ PoolPal is a mobile and progressive web application built for users to track and
 This repository contains code for the front-end of the application. Below is a link to the repository containing the code for the service-layer:
 https://github.com/kylekanderson/PoolPal-Server
 
+A demo of the application is hosted at: https://poolpal-1a57b.web.app
+
 When opening the application for the first time, users will be presented with a set of introductory slides:
 <br><img src="https://github.com/kylekanderson/PoolPal/blob/main/design/Screenshots/intro_slides.png" width="300">
 
@@ -28,8 +30,6 @@ The application also contains an Account page where the user can manage/update v
 <br><img src="https://github.com/kylekanderson/PoolPal/blob/main/design/Screenshots/account.png" width="300">
 
 The application is available as both a hybrid mobile application (for iOS and Android) and a Progressive Web Application. 
-
-A demo of the application is hosted at: https://poolpal-1a57b.web.app
 
 To install the progressive web app, navigate to the web app and click on the "+" in the URL bar of your broswer:
 <br><img src="https://github.com/kylekanderson/PoolPal/blob/main/design/Screenshots/install.png">
