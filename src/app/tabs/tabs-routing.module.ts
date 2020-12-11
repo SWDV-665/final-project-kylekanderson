@@ -9,15 +9,15 @@ const routes: Routes = [
     children: [
       {
         path: 'readings',
-        loadChildren: () => import('../readings/readings.module').then(m => m.ReadingsPageModule)
+        loadChildren: () => import('../pages/readings/readings.module').then(m => m.ReadingsPageModule)
       },
       {
         path: 'historicaldata',
-        loadChildren: () => import('../historicaldata/historicaldata.module').then(m => m.HistoricalDataPageModule)
+        loadChildren: () => import('../pages/historicaldata/historicaldata.module').then(m => m.HistoricalDataPageModule)
       },
       {
         path: 'account',
-        loadChildren: () => import('../account/account.module').then(m => m.AccountPageModule)
+        loadChildren: () => import('../pages/account/account.module').then(m => m.AccountPageModule)
       },
       {
         path: '',

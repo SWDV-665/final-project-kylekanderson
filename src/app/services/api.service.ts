@@ -48,18 +48,24 @@ export class ApiService {
   };
 
 
-  // Create a new item
-  createReading(item): Observable<Reading> {
+  /**
+   * Create a new Reading in the database
+   * @param reading A Reading object
+   */
+  createReading(reading: Reading): Observable<Reading> {
     return this.http
-      .post<Reading>(this.readings_base_path, JSON.stringify(item), this.httpOptions)
+      .post<Reading>(this.readings_base_path, JSON.stringify(reading), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  // Get single reading data by ID
-  getReading(id): Observable<Reading> {
+  /**
+   * Get a reading, based on the supplied Reading ID
+   * @param id A reading ID
+   */
+  getReading(id: String): Observable<Reading> {
     return this.http
       .get<Reading>(this.readings_base_path + '/' + id)
       .pipe(
@@ -68,8 +74,11 @@ export class ApiService {
       )
   }
 
-  // Get readings data
-  getReadings(userId): Observable<object[]> {
+  /**
+   * Get an array of Reading objects for a given User ID
+   * @param userId A User ID
+   */
+  getReadings(userId: String): Observable<object[]> {
     return this.http.get(this.readings_base_path + '/' + userId).
       pipe(
         map((data: Reading[]) => {
@@ -80,54 +89,58 @@ export class ApiService {
       )
   }
 
-  // Update item by id
-  updateReading(id, item): Observable<Reading> {
+  /**
+   * Update a Reading
+   * @param readingId A Reading ID
+   * @param reading A Reading objects
+   */
+  updateReading(readingId: String, reading: Reading): Observable<Reading> {
     return this.http
-      .put<Reading>(this.readings_base_path + '/' + id, JSON.stringify(item), this.httpOptions)
+      .put<Reading>(this.readings_base_path + '/' + readingId, JSON.stringify(reading), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  // Delete item by id
-  deleteReading(id) {
+  /**
+   * Delete a reading from the database
+   * @param readingId A Reading ID
+   */
+  deleteReading(readingId: String) {
     return this.http
-      .delete<Reading>(this.readings_base_path + '/' + id, this.httpOptions)
+      .delete<Reading>(this.readings_base_path + '/' + readingId, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  // Create a new item
-  createUser(item): Observable<User> {
+  /**
+   * Create a new user in the database
+   * @param user A User object
+   */
+  createUser(user: User): Observable<User> {
     return this.http
-      .post<User>(this.user_base_path, JSON.stringify(item), this.httpOptions)
+      .post<User>(this.user_base_path, JSON.stringify(user), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  async getUser(id): Promise<User> {
-    const response = await this.http.get<User>(this.user_base_path + '/' + id).toPromise();
+  /**
+   * Get a User from the database
+   * @param userId A User ID
+   */
+  async getUser(userId: String): Promise<User> {
+    const response = await this.http.get<User>(this.user_base_path + '/' + userId).toPromise();
     return response;
   }
 
-  // Get single user data by ID
-  // getUser(id) {
-  //   return this.http
-  //     .get(this.user_base_path + '/' + id)
-  //     .pipe(
-  //       map((response: User) => {
-  //         return response;
-  //       }),
-  //       retry(2),
-  //       catchError(this.handleError)
-  //     )
-  // }
-
+  /**
+   * Get a full user list from the database
+   */
   getUserList(): Observable<object[]> {
     return this.http.get(this.user_base_path).
       pipe(
@@ -139,25 +152,35 @@ export class ApiService {
       )
   }
 
+  /**
+   * Get the full chemical list from the database
+   */
   async getChemicalList(): Promise<Chemical[]> {
     const response = await this.http.get<Chemical[]>(this.chemicals_base_path + '/').toPromise();
     return response;
   }
 
-  // Update item by id
-  updateUser(id, item): Observable<User> {
+  /**
+   * Update a user in the database
+   * @param userId A User ID
+   * @param user A User object
+   */
+  updateUser(userId: String, user: User): Observable<User> {
     return this.http
-      .patch<User>(this.user_base_path + '/' + id, JSON.stringify(item), this.httpOptions)
+      .patch<User>(this.user_base_path + '/' + userId, JSON.stringify(user), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  // Delete item by id
-  deleteUser(id) {
+  /**
+   * Delete a User from the database
+   * @param userId A User ID
+   */
+  deleteUser(userId: String) {
     return this.http
-      .delete<User>(this.user_base_path + '/' + id, this.httpOptions)
+      .delete<User>(this.user_base_path + '/' + userId, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)

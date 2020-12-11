@@ -49,6 +49,9 @@ export class AuthenticationService {
     this.loadToken();
   }
 
+  /**
+   * Check local storage for a user token
+   */
   async loadToken() {
     const token = await Storage.get({ key: TOKEN_KEY });
     if (token && token.value) {
@@ -60,18 +63,29 @@ export class AuthenticationService {
     }
   }
 
-  login(credentials: { email, password }): Observable<any> {
+  /**
+   * Attempt to authenticate a user against their stored credentials
+   * @param credentials An object containing a user email and password
+   */
+  login(credentials: { email: String, password: String }): Observable<any> {
     return this.http.post(this.user_base_path + '/login', credentials)
   }
 
+  /**
+   * Logout a user
+   */
   logout(): Promise<void> {
     this.isAuthenticated.next(false);
     return;
   }
 
-  register(userData) {
+  /**
+   * Register a new user
+   * @param user A User object
+   */
+  register(user: User) {
     return this.http
-      .post<User>(this.user_base_path, JSON.stringify(userData), this.httpOptions)
+      .post<User>(this.user_base_path, JSON.stringify(user), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
