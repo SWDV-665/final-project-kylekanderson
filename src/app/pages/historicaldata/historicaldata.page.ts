@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
-import { Reading } from '../models/reading';
-import { ApiService } from '../services/api.service';
-import { AuthenticationService } from '../services/authentication.service';
+import { Reading } from '../../models/reading';
+import { ApiService } from '../../services/api.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import * as moment from 'moment';
 
 @Component({

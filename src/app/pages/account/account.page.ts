@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ApiService } from '../services/api.service';
-import { Chemicals, User } from '../models/user';
-import { Chemical } from '../models/chemical';
-import { AuthenticationService } from '../services/authentication.service';
+import { ApiService } from '../../services/api.service';
+import { Chemicals, User } from '../../models/user';
+import { Chemical } from '../../models/chemical';
+import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
-import { PasswordValidator } from './../validators/password.validator';
+import { PasswordValidator } from './../../validators/password.validator';
 import * as $ from 'jquery';
 
 

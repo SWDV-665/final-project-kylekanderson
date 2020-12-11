@@ -6,7 +6,7 @@ import { ReadingsPage } from './readings.page';
 
 import { ReadingsPageRoutingModule } from './readings-routing.module';
 
-import { ComponentsModule } from './../components/components.module';
+import { ComponentsModule } from './../../components/components.module';
 
 
 

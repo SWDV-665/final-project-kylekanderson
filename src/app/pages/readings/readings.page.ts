@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Reading } from '../models/reading';
-import { ApiService } from '../services/api.service';
+import { Reading } from '../../models/reading';
+import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './../services/authentication.service';
+import { AuthenticationService } from './../../services/authentication.service';
 import { ModalController } from '@ionic/angular';
-import { ActionModalComponent } from '../components/action-modal/action-modal.component';
+import { ActionModalComponent } from '../../components/action-modal/action-modal.component';
 
 
 @Component({

@@ -7,7 +7,7 @@ import { AccountPage } from './account.page';
 
 import { AccountPageRoutingModule } from './account-routing.module';
 
-import { ComponentsModule } from './../components/components.module';
+import { ComponentsModule } from './../../components/components.module';
 
 
 @NgModule({
