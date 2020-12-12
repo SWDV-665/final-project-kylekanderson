@@ -15,6 +15,12 @@ Password: password
 
 Or, you are welcome to register your own account using the application.
 
+To run the application locally:
+1. Clone the repository
+2. Run `npm install`
+3. Run `ionic serve` to serve the application
+4. Visit `localhost:8100` to access the application
+
 When opening the application for the first time, users will be presented with a set of introductory slides:
 <br><img src="https://github.com/kylekanderson/PoolPal/blob/main/design/Screenshots/intro_slides.png" width="300">
 
